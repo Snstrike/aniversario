@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nuestro Aniversario | 18 Abril 2025</title>
     
+    <!-- Favicon (vintage heart) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236F2A2A'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome (no emojis) -->
+    <!-- Font Awesome (for control icons – you can replace with PNGs later) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Swiper -->
@@ -27,11 +30,11 @@
     <div class="grain-overlay"></div>
     <div class="vignette"></div>
 
-    <!-- Flower stickers container (populated by JS) -->
+    <!-- Flower stickers container -->
     <div id="flower-stickers-container"></div>
 
     <div class="container">
-        <!-- Header with torn edge and photo corners -->
+        <!-- Header with custom camera and leaves -->
         <header class="hero" data-aos="fade-down">
             <div class="torn-edge top"></div>
             <div class="photo-corners">
@@ -42,7 +45,7 @@
             </div>
             <div class="hero-content">
                 <div class="vintage-icon">
-                    <i class="fas fa-camera-retro"></i>
+                    <img src="icons/camera.png" alt="camera" class="icon-camera">
                 </div>
                 <h1>Nuestra historia</h1>
                 <div class="date-badge">
@@ -52,13 +55,14 @@
                 </div>
                 <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
                 <div class="vintage-separator">
-                    <i class="fas fa-feather-alt"></i> <i class="fas fa-leaf"></i>
+                    <img src="icons/leaves.png" alt="leaf" class="icon-sep">
+                    <img src="icons/leaves.png" alt="leaf" class="icon-sep">
                 </div>
             </div>
             <div class="torn-edge bottom"></div>
         </header>
 
-        <!-- Carrusel Polaroid (13 photos) -->
+        <!-- Carrusel Polaroid (13 slides) -->
         <section class="carousel-section" data-aos="fade-up">
             <h2 class="section-title">El Gran Carrusel de Historias</h2>
             <div class="swiper mySwiper">
@@ -200,7 +204,7 @@
             </div>
         </section>
 
-        <!-- Carta con sello (wax stamp) -->
+        <!-- Carta con sello -->
         <section class="letter-section" data-aos="zoom-in">
             <div class="letter-paper">
                 <div class="letter-header">
@@ -219,10 +223,10 @@
             </div>
         </section>
 
-        <!-- Vinyl player (only vinyl record) -->
+        <!-- Vinyl player -->
         <div class="vinyl-player" data-aos="fade-up">
             <div class="record-player">
-                <div class="vinyl-container">
+                <div class="vinyl-wrapper">
                     <img src="images/vinyl.png" class="vinyl-record" id="vinylRecord" alt="vinyl record">
                 </div>
                 <div class="controls">
@@ -244,7 +248,9 @@
         <!-- Footer -->
         <footer class="footer-message">
             <div class="footer-decoration">
-                <i class="fas fa-feather-alt"></i> <i class="fas fa-record-vinyl"></i> <i class="fas fa-leaf"></i>
+                <img src="icons/leaves.png" alt="leaf" class="icon-footer">
+                <i class="fas fa-record-vinyl"></i>
+                <img src="icons/leaves.png" alt="leaf" class="icon-footer">
             </div>
             <p>Y esta es solo la primera página de nuestro libro...</p>
             <p class="signature">Siempre juntas</p>
@@ -252,12 +258,12 @@
     </div>
 
     <script>
-        // Initialize AOS after page load
+        // Initialize AOS
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ duration: 1000, once: true, offset: 100 });
         });
 
-        // Initialize Swiper after DOM ready
+        // Initialize Swiper
         document.addEventListener('DOMContentLoaded', () => {
             new Swiper('.mySwiper', {
                 loop: true,
@@ -274,10 +280,10 @@
             });
         });
 
-        // Flower stickers (lazy load after page load)
+        // Flower stickers (lazy load)
         window.addEventListener('load', () => {
             const container = document.getElementById('flower-stickers-container');
-            const flowerCount = 46; // use all 46 PNGs
+            const flowerCount = 46;
             for (let i = 1; i <= flowerCount; i++) {
                 const img = document.createElement('img');
                 img.src = `images/flowers/flower (${i}).png`;

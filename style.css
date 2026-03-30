@@ -80,7 +80,7 @@ body {
 .container {
     position: relative;
     z-index: 3;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
 }
@@ -155,9 +155,11 @@ body {
     z-index: 2;
 }
 .vintage-icon {
-    font-size: 2rem;
-    color: var(--deep-burgundy);
     margin-bottom: 0.5rem;
+}
+.icon-camera {
+    width: 40px;
+    height: auto;
     opacity: 0.7;
 }
 .hero h1 {
@@ -188,9 +190,14 @@ body {
 }
 .vintage-separator {
     margin-top: 1rem;
-    font-size: 0.9rem;
-    color: var(--warm-gold);
-    letter-spacing: 4px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.icon-sep {
+    width: 24px;
+    height: auto;
+    opacity: 0.6;
 }
 
 /* ===== CARRUSEL POLAROID ===== */
@@ -338,7 +345,7 @@ body {
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
 }
 
-/* ===== VINYL PLAYER (only record, no turntable) ===== */
+/* ===== VINYL PLAYER ===== */
 .vinyl-player {
     margin: 4rem 0;
     display: flex;
@@ -354,10 +361,9 @@ body {
     max-width: 400px;
     text-align: center;
 }
-.vinyl-container {
+.vinyl-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
     margin-bottom: 1rem;
 }
 .vinyl-record {
@@ -376,6 +382,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    align-items: center;
     margin-top: 1rem;
 }
 .control-btn {
@@ -383,10 +390,14 @@ body {
     border: none;
     color: var(--warm-gold);
     font-size: 1.2rem;
-    padding: 0.5rem 1rem;
+    width: 40px;
+    height: 40px;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .control-btn:hover {
     background: #5A3E3E;
@@ -397,6 +408,7 @@ body {
     border-radius: 30px;
     color: var(--lace-white);
     font-size: 0.9rem;
+    margin-left: 0.5rem;
 }
 
 /* ===== FOOTER ===== */
@@ -412,12 +424,19 @@ body {
 }
 .footer-decoration {
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--warm-gold);
-    letter-spacing: 3px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+.icon-footer {
+    width: 24px;
+    height: auto;
+    opacity: 0.6;
 }
 .footer-decoration i {
-    margin: 0 2px;
+    font-size: 1.2rem;
+    color: var(--warm-gold);
 }
 .footer-message p {
     font-size: 0.9rem;
@@ -433,9 +452,18 @@ body {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 1000px;
+    }
+    .swiper {
+        padding: 1.5rem 0 2rem;
+    }
+}
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
+        max-width: 100%;
     }
     .hero h1 {
         font-size: 2rem;
@@ -485,11 +513,37 @@ body {
         width: 140px;
     }
     .control-btn {
+        width: 36px;
+        height: 36px;
         font-size: 1rem;
-        padding: 0.3rem 0.8rem;
+    }
+    .song-info {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
     }
     .vintage-flower {
         width: 60px;
         opacity: 0.25;
+    }
+    .icon-camera {
+        width: 30px;
+    }
+    .icon-sep, .icon-footer {
+        width: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+    .polaroid-inner {
+        padding: 0.8rem 0.8rem 1rem;
+    }
+    .polaroid-date {
+        font-size: 1rem;
+    }
+    .polaroid-caption p:last-child {
+        font-size: 0.9rem;
     }
 }
