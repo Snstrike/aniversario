@@ -3,101 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Nuestro Aniversario | Te amo ❤️</title>
+    <title>Nuestro Primer Aniversario | 18 Abril 2025</title>
+    
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <!-- AOS (Animate on Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Swiper (Carrusel táctil) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Tu hoja de estilos externa -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-blur"></div> <!-- Fondo difuminado decorativo -->
 
-    <main class="container">
-        <!-- Header con fecha especial -->
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+        <!-- Header con fecha -->
         <header class="hero" data-aos="fade-down">
-            <h1 class="hero-title">✨ Nuestra historia ✨</h1>
+            <h1>Nuestra historia</h1>
             <div class="date-badge">
-                <span>❤️ Desde el</span>
-                <strong>14 de Febrero, 2022</strong>
-                <span>hasta siempre ❤️</span>
+                <span>✨ Desde el</span>
+                <strong>18 de Abril, 2025</strong>
+                <span>✨</span>
             </div>
-            <p class="hero-sub">Cada día a tu lado es un regalo</p>
+            <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
         </header>
 
-        <!-- Línea del tiempo -->
-        <section class="timeline" data-aos="fade-up">
-            <h2 class="section-title">Nuestros hitos</h2>
-            <div class="timeline-grid">
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-date">14 Feb 2022</div>
-                    <div class="timeline-content">
-                        <h3>Primera cita</h3>
-                        <p>Ese café que cambió todo. Sonrisas, nervios y la certeza de que eras especial.</p>
+        <!-- Carrusel de historias -->
+        <section class="carousel-section" data-aos="fade-up">
+            <h2 class="section-title">El Gran Carrusel de Historias</h2>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Diapositiva 1 -->
+                    <div class="swiper-slide">
+                        <div class="slide-image">
+                            <img src="images/historia1.jpg" alt="Historia 1">
+                        </div>
+                        <div class="slide-caption">
+                            <h3>📅 18 de Abril 2025</h3>
+                            <p>El día que todo comenzó. Nuestra primera cita en aquel café junto al mar. Nervios, sonrisas y la certeza de que eras especial.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-date">10 Jun 2022</div>
-                    <div class="timeline-content">
-                        <h3>Primer viaje juntos</h3>
-                        <p>Playas, atardeceres y promesas bajo las estrellas. Nuestro primer "te amo".</p>
+                    <!-- Diapositiva 2 -->
+                    <div class="swiper-slide">
+                        <div class="slide-image">
+                            <img src="images/historia2.jpg" alt="Historia 2">
+                        </div>
+                        <div class="slide-caption">
+                            <h3>🌅 Mayo 2025</h3>
+                            <p>Atardecer en la montaña. Prometimos seguir soñando juntos. Nuestra primera foto oficial.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-right">
-                    <div class="timeline-date">25 Dic 2022</div>
-                    <div class="timeline-content">
-                        <h3>Navidad en familia</h3>
-                        <p>Conocimos nuestras familias. Fue mágico ver cómo todos nos querían juntos.</p>
+                    <!-- Diapositiva 3 -->
+                    <div class="swiper-slide">
+                        <div class="slide-image">
+                            <img src="images/historia3.jpg" alt="Historia 3">
+                        </div>
+                        <div class="slide-caption">
+                            <h3>🎉 Julio 2025</h3>
+                            <p>Celebramos tu cumpleaños con una cena sorpresa. Ese pastel que horneamos juntos fue el mejor.</p>
+                        </div>
                     </div>
+                    <!-- Agrega más diapositivas según tus fotos -->
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
-                    <div class="timeline-date">03 May 2023</div>
-                    <div class="timeline-content">
-                        <h3>Vivir juntos</h3>
-                        <p>Dimos el gran paso. Nuestro hogar, nuestros sueños compartidos.</p>
-                    </div>
-                </div>
+                <!-- Paginación y flechas -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </section>
 
-        <!-- Galería de fotos -->
-        <section class="gallery" data-aos="fade-up">
-            <h2 class="section-title">Momentos inolvidables</h2>
-            <div class="gallery-grid">
-                <!-- Cambia los nombres de las imágenes según las tuyas -->
-                <div class="gallery-item"><img src="images/foto1.jpg" alt="Foto 1"></div>
-                <div class="gallery-item"><img src="images/foto2.jpg" alt="Foto 2"></div>
-                <div class="gallery-item"><img src="images/foto3.jpg" alt="Foto 3"></div>
-                <div class="gallery-item"><img src="images/foto4.jpg" alt="Foto 4"></div>
-                <div class="gallery-item"><img src="images/foto5.jpg" alt="Foto 5"></div>
-                <div class="gallery-item"><img src="images/foto6.jpg" alt="Foto 6"></div>
-            </div>
-        </section>
-
-        <!-- Carta final -->
-        <section class="letter" data-aos="zoom-in">
-            <h2 class="section-title">Para ti, mi amor</h2>
-            <div class="letter-card">
-                <p>Mi vida,</p>
-                <p>Hoy celebramos otro año de este hermoso sueño que llamamos "nosotros". Gracias por cada risa, cada abrazo, cada madrugada de charlas interminables. Eres la razón por la que creo en el amor verdadero.</p>
-                <p>Que nuestra historia siga escribiéndose con los mismos besos, complicidad y locura. Te elijo hoy, mañana y siempre.</p>
-                <p>Con todo mi corazón,<br>Tu persona favorita ❤️</p>
-            </div>
-        </section>
-
-        <footer>
-            <p>Hecho con amor para ti • 14 de Febrero, 2025</p>
+        <!-- Mensaje final romántico -->
+        <footer class="footer-message" data-aos="zoom-in">
+            <p>Y esta es solo la primera página de nuestro libro...</p>
+            <p class="signature">Con todo mi amor,</p>
+            <p class="signature" style="font-size: 2rem;">Tu persona favorita</p>
         </footer>
-    </main>
+    </div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Inicializar AOS
         AOS.init({
-            duration: 800,
+            duration: 1000,
             once: true,
             offset: 100
         });
+        
+        // Inicializar Swiper (carrusel táctil)
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            effect: 'slide',
+            speed: 600,
+            spaceBetween: 20,
+            slidesPerView: 1,
+            centeredSlides: true,
+            grabCursor: true,
+            touchRatio: 1,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                }
+            }
+        });
+        
+        // ===== PARTÍCULAS (polvo de estrellas) =====
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+        let scrollY = 0;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.color = `hsl(${Math.random() * 20 + 10}, 80%, 70%)`; // tonos coral/salmón
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+                
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < 100) {
+                    const force = (100 - distance) / 100 * 0.5;
+                    const angle = Math.atan2(dy, dx);
+                    this.x -= Math.cos(angle) * force;
+                    this.y -= Math.sin(angle) * force;
+                }
+                
+                if (scrollY !== 0) {
+                    this.y += scrollY * 0.05;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.alpha;
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(150, Math.floor(window.innerWidth * 0.2));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animateParticles() {
+            if (!canvas || !ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY - (scrollY || 0);
+            setTimeout(() => { scrollY = 0; }, 100);
+        });
+        
+        resizeCanvas();
+        initParticles();
+        animateParticles();
     </script>
 </body>
 </html>
