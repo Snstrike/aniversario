@@ -5,45 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nuestro Aniversario | 18 Abril 2025</title>
     
-    <!-- Google Fonts: elegant serif + clean sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Swiper for carousel -->
+    <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <!-- AOS for scroll animations -->
+    <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background texture (subtle paper) -->
+    <!-- Paper texture overlay -->
     <div class="paper-texture"></div>
-    
-    <!-- Container for vintage flower stickers (JS will populate) -->
-    <div id="flower-stickers-container"></div>
-    
-    <!-- Grain overlay -->
     <div class="grain-overlay"></div>
+    <div class="vignette"></div>
+
+    <!-- Flower stickers container (JS will populate) -->
+    <div id="flower-stickers-container"></div>
 
     <div class="container">
+        <!-- Header with vintage photo corners -->
         <header class="hero" data-aos="fade-down">
-            <h1>Nuestra historia</h1>
-            <div class="date-badge">
-                <span>Desde el</span>
-                <strong>18 de abril de 2025</strong>
-                <span>hasta siempre</span>
+            <div class="photo-corners">
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
             </div>
-            <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
+            <div class="hero-content">
+                <div class="gramophone-icon">📀</div>
+                <h1>Nuestra historia</h1>
+                <div class="date-badge">
+                    <span>Desde el</span>
+                    <strong>18 de abril de 2025</strong>
+                    <span>hasta siempre</span>
+                </div>
+                <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
+                <div class="vinyl-decor">
+                    <div class="vinyl-mini"></div>
+                </div>
+            </div>
         </header>
 
+        <!-- Carrusel Polaroid -->
         <section class="carousel-section" data-aos="fade-up">
             <h2 class="section-title">El Gran Carrusel de Historias</h2>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- 13 polaroids (photos with captions) -->
+                    <!-- 13 polaroids (same as before) -->
                     <div class="swiper-slide polaroid">
                         <div class="polaroid-inner">
                             <div class="polaroid-photo">
@@ -194,7 +207,7 @@
             </div>
         </section>
 
-        <!-- Vintage letter with wax stamp -->
+        <!-- Carta con sello de cera real -->
         <section class="letter-section" data-aos="zoom-in">
             <div class="letter-paper">
                 <div class="letter-header">
@@ -207,11 +220,39 @@
                     <p>Me encanta nuestra historia, me encanta lo que somos y la forma en que conectamos siempre.</p>
                     <p class="letter-signature">Con todo mi amor,<br>tu persona favorita</p>
                 </div>
+                <!-- Real wax stamp image (you must provide waxstamp.png) -->
                 <div class="wax-stamp">
-                    <span>❤️</span>
+                    <img src="images/waxstamp.png" alt="wax stamp">
                 </div>
             </div>
         </section>
+
+        <!-- Vinyl Record Player (tocadiscos) -->
+        <div class="vinyl-player" data-aos="fade-up">
+            <div class="record-player">
+                <div class="turntable">
+                    <div class="platter" id="vinylPlatter">
+                        <div class="record" id="record"></div>
+                    </div>
+                    <div class="tonearm" id="tonearm"></div>
+                </div>
+                <div class="controls">
+                    <button id="playPauseBtn" class="control-btn">⏵</button>
+                    <button id="prevBtn" class="control-btn">⏮</button>
+                    <button id="nextBtn" class="control-btn">⏭</button>
+                    <div class="song-info">
+                        <span id="currentSong">Canción 1</span>
+                    </div>
+                </div>
+            </div>
+            <audio id="audioPlayer" preload="auto">
+                <!-- Replace with your own audio files -->
+                <source src="audio/song1.mp3" type="audio/mpeg">
+                <source src="audio/song2.mp3" type="audio/mpeg">
+                <source src="audio/song3.mp3" type="audio/mpeg">
+                Tu navegador no soporta audio.
+            </audio>
+        </div>
 
         <footer class="footer-message">
             <p>Y esta es solo la primera página de nuestro libro...</p>
@@ -223,7 +264,7 @@
         // Initialize AOS
         AOS.init({ duration: 1000, once: true, offset: 100 });
         
-        // Initialize Swiper (touch carousel)
+        // Initialize Swiper
         const swiper = new Swiper('.mySwiper', {
             loop: true,
             speed: 600,
@@ -238,28 +279,89 @@
             }
         });
 
-        // Load 46 vintage flower stickers dynamically
+        // Flower stickers (load your 46 PNGs)
         const container = document.getElementById('flower-stickers-container');
         const flowerCount = 46;
         for (let i = 1; i <= flowerCount; i++) {
             const img = document.createElement('img');
             img.src = `images/flowers/flower (${i}).png`;
             img.classList.add('vintage-flower');
-            // Random position, rotation, size
-            const top = Math.random() * 100; // vh
-            const left = Math.random() * 100; // vw
-            const rotate = (Math.random() - 0.5) * 30; // -15 to 15 deg
-            const scale = 0.5 + Math.random() * 0.7; // 0.5 to 1.2
-            const opacity = 0.2 + Math.random() * 0.3; // 0.2 to 0.5
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            const rotate = (Math.random() - 0.5) * 30;
+            const scale = 0.6 + Math.random() * 0.8;
+            const opacity = 0.2 + Math.random() * 0.3;
             img.style.top = `${top}%`;
             img.style.left = `${left}%`;
             img.style.transform = `rotate(${rotate}deg) scale(${scale})`;
             img.style.opacity = opacity;
-            img.style.position = 'absolute';
-            img.style.pointerEvents = 'none';
-            img.style.zIndex = 1;
             container.appendChild(img);
         }
+
+        // Vinyl player logic
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSongSpan = document.getElementById('currentSong');
+        const record = document.getElementById('record');
+
+        // List of songs (titles and sources)
+        const songs = [
+            { title: "Nuestra canción", src: "audio/song1.mp3" },
+            { title: "Aquel día", src: "audio/song2.mp3" },
+            { title: "Siempre juntas", src: "audio/song3.mp3" }
+        ];
+        let currentSongIndex = 0;
+
+        function loadSong(index) {
+            audio.src = songs[index].src;
+            audio.load();
+            currentSongSpan.textContent = songs[index].title;
+            if (!audio.paused) {
+                audio.play().catch(e => console.log("Playback prevented", e));
+                record.classList.add('spinning');
+                playPauseBtn.textContent = '⏸';
+            } else {
+                record.classList.remove('spinning');
+                playPauseBtn.textContent = '⏵';
+            }
+        }
+
+        function playPause() {
+            if (audio.paused) {
+                audio.play().then(() => {
+                    record.classList.add('spinning');
+                    playPauseBtn.textContent = '⏸';
+                }).catch(e => console.log("Autoplay blocked?"));
+            } else {
+                audio.pause();
+                record.classList.remove('spinning');
+                playPauseBtn.textContent = '⏵';
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            audio.play().catch(e => console.log("Play failed"));
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(currentSongIndex);
+            audio.play().catch(e => console.log("Play failed"));
+        }
+
+        playPauseBtn.addEventListener('click', playPause);
+        nextBtn.addEventListener('click', nextSong);
+        prevBtn.addEventListener('click', prevSong);
+
+        // When a song ends, go to next
+        audio.addEventListener('ended', nextSong);
+
+        // Load the first song initially
+        loadSong(0);
     </script>
 </body>
 </html>

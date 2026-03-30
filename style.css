@@ -1,12 +1,13 @@
-/* ===== VINTAGE AESTHETIC – MUTED TONES, GRAIN, PAPER ===== */
+/* ===== VINTAGE AESTHETIC – PAPER, GRAIN, DEEP TONES ===== */
 :root {
-    --paper-bg: #F9F3E7;
-    --sepia-tone: #DBC8AC;
+    --paper-bg: #FCF5E8;
+    --sepia-dark: #DBC8AC;
     --deep-burgundy: #6F2A2A;
     --warm-gold: #C9A87C;
     --olive-muted: #7A6A48;
     --charcoal: #3A2C2C;
     --lace-white: #FFF6EB;
+    --vignette: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.1) 100%);
 }
 
 * {
@@ -24,14 +25,14 @@ body {
     overflow-x: hidden;
 }
 
-/* Paper texture background */
+/* === PAPER TEXTURE === */
 .paper-texture {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.05"><path d="M50 20 L180 20 L180 180 L50 180 Z" fill="none" stroke="%236F2A2A" stroke-width="0.5"/><circle cx="100" cy="100" r="30" fill="none" stroke="%236F2A2A" stroke-width="0.5"/><line x1="20" y1="150" x2="180" y2="150" stroke="%236F2A2A" stroke-width="0.5"/><line x1="20" y1="50" x2="180" y2="50" stroke="%236F2A2A" stroke-width="0.5"/></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.06"><path d="M30 20 L170 20 M20 30 L180 30 M40 180 L160 180 M20 170 L180 170" stroke="%236F2A2A" stroke-width="0.5" fill="none"/><circle cx="100" cy="100" r="40" fill="none" stroke="%236F2A2A" stroke-width="0.5"/><path d="M50 150 L150 50" stroke="%236F2A2A" stroke-width="0.5"/></svg>');
     background-repeat: repeat;
     pointer-events: none;
     z-index: 0;
@@ -44,10 +45,22 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 8px);
+    background-image: repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 8px);
     pointer-events: none;
     z-index: 1;
     mix-blend-mode: overlay;
+}
+
+/* Vignette */
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--vignette);
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Flower stickers container */
@@ -67,9 +80,7 @@ body {
     height: auto;
     filter: sepia(0.3) brightness(0.9) contrast(1.1);
     transition: all 0.2s ease;
-    opacity: 0.35;
 }
-/* Optional: different sizes for variety, but random in JS already */
 
 .container {
     position: relative;
@@ -79,33 +90,78 @@ body {
     padding: 2rem 1.5rem;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER WITH PHOTO CORNERS ===== */
 .hero {
-    text-align: center;
+    position: relative;
     margin-bottom: 4rem;
-    padding: 2rem;
-    background: rgba(255, 246, 235, 0.7);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 246, 235, 0.6);
+    backdrop-filter: blur(4px);
     border-radius: 2rem;
     border: 1px solid var(--warm-gold);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    padding: 2rem;
+    text-align: center;
+}
+.photo-corners {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+.corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--deep-burgundy);
+}
+.top-left {
+    top: 10px;
+    left: 10px;
+    border-right: none;
+    border-bottom: none;
+}
+.top-right {
+    top: 10px;
+    right: 10px;
+    border-left: none;
+    border-bottom: none;
+}
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-right: none;
+    border-top: none;
+}
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-left: none;
+    border-top: none;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+.gramophone-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
 }
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 3rem;
     font-weight: 600;
     color: var(--deep-burgundy);
-    letter-spacing: -0.5px;
 }
 .date-badge {
     display: inline-block;
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.1);
     padding: 0.5rem 1.5rem;
     border-radius: 40px;
     font-size: 1rem;
     margin: 1rem 0;
     border: 1px solid var(--warm-gold);
-    color: var(--deep-burgundy);
 }
 .date-badge strong {
     font-family: 'Playfair Display', serif;
@@ -118,8 +174,32 @@ body {
     font-weight: 300;
     color: var(--olive-muted);
 }
+.vinyl-decor {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.vinyl-mini {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #2C2C2C 20%, #111 80%);
+    border-radius: 50%;
+    border: 2px solid var(--warm-gold);
+    position: relative;
+}
+.vinyl-mini::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #C9A87C;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
 
-/* ===== CARRUSEL – POLAROID STYLE ===== */
+/* ===== CARRUSEL POLAROID (unchanged from previous) ===== */
 .carousel-section {
     margin: 4rem 0;
 }
@@ -212,7 +292,7 @@ body {
     font-size: 1.2rem;
 }
 
-/* ===== CARTA VINTAGE CON SELLO DE CERA ===== */
+/* ===== CARTA VINTAGE CON SELLO REAL ===== */
 .letter-section {
     margin: 4rem 0;
     display: flex;
@@ -252,8 +332,8 @@ body {
 }
 .letter-signature {
     margin-top: 1.5rem;
-    font-family: 'Playfair Display', cursive;
-    font-size: 1.4rem;
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
     text-align: right;
     color: var(--deep-burgundy);
 }
@@ -261,22 +341,123 @@ body {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    width: 70px;
-    height: 70px;
-    background: radial-gradient(circle at 30% 30%, #B37B5E, #8B4E3A);
+    width: 80px;
+    height: auto;
+    opacity: 0.9;
+}
+.wax-stamp img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+/* ===== VINYL RECORD PLAYER ===== */
+.vinyl-player {
+    margin: 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+.record-player {
+    background: #2C2C2C;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    border: 1px solid var(--warm-gold);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+.turntable {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.platter {
+    width: 150px;
+    height: 150px;
+    background: #1A1A1A;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border: 1px solid #E0B082;
-    font-size: 2rem;
-    color: #F7E4C2;
-    transform: rotate(-10deg);
-    font-family: 'Inter', sans-serif;
+    box-shadow: 0 0 0 2px #C9A87C, inset 0 0 0 2px #C9A87C;
+    position: relative;
 }
-.wax-stamp span {
-    transform: rotate(5deg);
+.record {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #222, #000);
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.2s linear;
+}
+.record::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: #C9A87C;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 2px #1A1A1A;
+}
+.record.spinning {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.tonearm {
+    width: 80px;
+    height: 8px;
+    background: linear-gradient(90deg, #B87C4E, #E0B082);
+    transform-origin: 0% 50%;
+    transform: rotate(-20deg);
+    position: relative;
+    top: -20px;
+    border-radius: 4px;
+}
+.tonearm::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background: #E0B082;
+    border-radius: 50%;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.control-btn {
+    background: #3A2C2C;
+    border: none;
+    color: var(--warm-gold);
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: monospace;
+}
+.control-btn:hover {
+    background: #5A3E3E;
+}
+.song-info {
+    background: rgba(0,0,0,0.5);
+    padding: 0.3rem 1rem;
+    border-radius: 30px;
+    color: var(--lace-white);
+    font-size: 0.9rem;
 }
 
 /* ===== FOOTER ===== */
@@ -344,14 +525,30 @@ body {
         font-size: 1.2rem;
     }
     .wax-stamp {
-        width: 50px;
-        height: 50px;
-        font-size: 1.4rem;
+        width: 60px;
         bottom: 10px;
         right: 10px;
     }
+    .record-player {
+        max-width: 90%;
+    }
+    .platter {
+        width: 120px;
+        height: 120px;
+    }
+    .record {
+        width: 90px;
+        height: 90px;
+    }
+    .tonearm {
+        width: 60px;
+    }
+    .control-btn {
+        font-size: 1rem;
+        padding: 0.3rem 0.8rem;
+    }
     .vintage-flower {
-        width: 50px;
-        opacity: 0.2;
+        width: 60px;
+        opacity: 0.25;
     }
 }
