@@ -69,12 +69,19 @@
                 <div class="torn-edge bottom"></div>
             </header>
 
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" onclick="window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2 L12 20 M7 15 L12 20 L17 15" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+            </div>
+
             <!-- Carrusel Polaroid (13 slides) -->
             <section class="carousel-section" data-aos="fade-up">
                 <h2 class="section-title">Nuestro año juntas</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <!-- All slides as you provided (unchanged) -->
+                        <!-- All 13 slides – same as previous -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/18Mar2025.jpg" alt="18 Mar 2025" loading="lazy"></div>
@@ -327,7 +334,6 @@
         const currentSongSpan = document.getElementById('currentSong');
         const vinylRecord = document.getElementById('vinylRecord');
 
-        // Updated songs array: "Amor Completo" first
         const songs = [
             { title: "Mon Laferte - Amor Completo", src: "audio/Mon Laferte - Amor Completo.mp3" },
             { title: "Mon Laferte - Bonita", src: "audio/Mon Laferte - Bonita.mp3" },
@@ -383,10 +389,9 @@
         prevBtn.addEventListener('click', prevSong);
         audio.addEventListener('ended', nextSong);
 
-        // Load the first song (Amor Completo) and attempt autoplay
+        // Load first song and try autoplay
         loadSong(0);
-        // Try to autoplay; browsers may block, so we attempt but don't show error
-        audio.play().catch(e => console.log("Autoplay blocked (user interaction needed)"));
+        audio.play().catch(e => console.log("Autoplay blocked"));
 
         // Particle system (shimmer)
         const canvas = document.getElementById('particleCanvas');
@@ -473,18 +478,13 @@
                 this.y += this.speedY;
                 this.x += this.speedX;
                 this.rotation += this.rotationSpeed;
-                // Remove when off screen
-                if (this.y + this.size < 0 || this.x + this.size < 0 || this.x - this.size > heartCanvas.width) {
-                    return false;
-                }
-                return true;
+                return this.y + this.size > 0 && this.x + this.size > 0 && this.x - this.size < heartCanvas.width;
             }
             draw() {
                 heartCtx.save();
                 heartCtx.translate(this.x, this.y);
                 heartCtx.rotate(this.rotation);
                 heartCtx.beginPath();
-                // Draw heart shape
                 heartCtx.moveTo(0, this.size * 0.3);
                 heartCtx.bezierCurveTo(
                     -this.size * 0.5, -this.size * 0.3,
@@ -504,38 +504,30 @@
 
         function initHearts() {
             hearts = [];
-            // Start with a few hearts
-            for (let i = 0; i < 15; i++) {
-                hearts.push(new Heart());
-            }
+            for (let i = 0; i < 15; i++) hearts.push(new Heart());
         }
 
         function animateHearts() {
             if (!heartCtx) return;
             heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
-            // Add new hearts occasionally
-            if (Math.random() < 0.05) {
-                hearts.push(new Heart());
-                // Keep max 60 hearts for performance
-                if (hearts.length > 60) hearts.shift();
-            }
+            if (Math.random() < 0.05 && hearts.length < 60) hearts.push(new Heart());
             for (let i = hearts.length-1; i >= 0; i--) {
-                const alive = hearts[i].update();
-                hearts[i].draw();
-                if (!alive) hearts.splice(i,1);
+                if (!hearts[i].update()) hearts.splice(i,1);
+                else hearts[i].draw();
             }
             requestAnimationFrame(animateHearts);
         }
 
         window.addEventListener('resize', () => {
             resizeHeartCanvas();
+            initHearts();
         });
 
         resizeHeartCanvas();
         initHearts();
         animateHearts();
 
-        // Interactive game – exact requirements (no changes)
+        // Interactive game – fixed no button lag and mentira never disappears
         const noResponses = [
             "Apoco no amor.",
             "Mentirosaaa.",
@@ -549,16 +541,27 @@
         const noBtn = document.getElementById('noBtn');
         const responseDiv = document.getElementById('responseMessage');
 
-        noBtn.addEventListener('click', () => {
-            responseDiv.textContent = noResponses[noIndex % noResponses.length];
+        function showNoResponse() {
+            const msg = noResponses[noIndex % noResponses.length];
+            responseDiv.textContent = msg;
             responseDiv.style.display = 'block';
             responseDiv.style.opacity = '0';
-            setTimeout(() => responseDiv.style.opacity = '1', 10);
+            // Force reflow
+            void responseDiv.offsetHeight;
+            responseDiv.style.opacity = '1';
             noIndex++;
+            // Auto hide after 2.5s
             setTimeout(() => {
                 responseDiv.style.opacity = '0';
-                setTimeout(() => responseDiv.style.display = 'none', 500);
-            }, 3000);
+                setTimeout(() => {
+                    if (responseDiv.style.opacity === '0') responseDiv.style.display = 'none';
+                }, 500);
+            }, 2500);
+        }
+
+        noBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNoResponse();
         });
 
         // Modal for Sí
@@ -603,23 +606,24 @@
             const modalContent = document.querySelector('.modal-content');
             const btnRect = mentiraBtn.getBoundingClientRect();
             const modalRect = modalContent.getBoundingClientRect();
+            // Calculate maximum safe position
             const maxX = modalRect.width - btnRect.width - 20;
             const maxY = modalRect.height - btnRect.height - 20;
-            const newX = Math.random() * maxX;
-            const newY = Math.random() * maxY;
+            const newX = Math.random() * Math.max(0, maxX);
+            const newY = Math.random() * Math.max(0, maxY);
             mentiraBtn.style.position = 'relative';
             mentiraBtn.style.top = newY + 'px';
             mentiraBtn.style.left = newX + 'px';
         }
 
         mentiraBtn.addEventListener('click', (e) => {
-            if (mentiraAttempts < 10) {
+            e.stopPropagation();
+            if (mentiraAttempts < 30) {
                 moveButton();
                 mentiraAttempts++;
-                e.stopPropagation();
+                modalMessageDiv.textContent = '¡No puedes escapar! Intenta otra vez.';
             } else {
                 modalMessageDiv.textContent = 'Bueno, está bien... ¡yo te amo más!';
-                mentiraBtn.style.display = 'none';
                 setTimeout(() => closeModalFunc(), 2000);
             }
         });
