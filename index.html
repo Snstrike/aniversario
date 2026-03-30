@@ -31,8 +31,11 @@
         <div class="grain-overlay"></div>
         <div class="vignette"></div>
 
-        <!-- Particle canvas -->
+        <!-- Particle canvas (shimmer) -->
         <canvas id="particleCanvas"></canvas>
+
+        <!-- Heart canvas (floating hearts) -->
+        <canvas id="heartCanvas"></canvas>
 
         <!-- Floating flowers -->
         <div id="flower-stickers-container"></div>
@@ -71,7 +74,7 @@
                 <h2 class="section-title">Nuestro año juntas</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <!-- Slide 1 -->
+                        <!-- All slides as you provided (unchanged) -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/18Mar2025.jpg" alt="18 Mar 2025" loading="lazy"></div>
@@ -81,7 +84,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 2 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/16Abr2025.jpg" alt="16 Abr 2025" loading="lazy"></div>
@@ -91,7 +93,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 3 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_1.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -101,7 +102,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 4 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_2.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -111,7 +111,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 5 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_3.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -121,7 +120,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 6 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/21Abr2025.jpg" alt="21 Abr 2025" loading="lazy"></div>
@@ -131,7 +129,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 7 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/28Junio2025_1.jpg" alt="28 Jun 2025" loading="lazy"></div>
@@ -141,7 +138,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 8 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/28Junio2025_2.jpg" alt="28 Jun 2025" loading="lazy"></div>
@@ -151,7 +147,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 9 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/29Junio2025.jpg" alt="29 Jun 2025" loading="lazy"></div>
@@ -161,7 +156,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 10 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/14Sep2025.jpg" alt="14 Sep 2025" loading="lazy"></div>
@@ -171,7 +165,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 11 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/17Nov2025.jpg" alt="17 Nov 2025" loading="lazy"></div>
@@ -181,7 +174,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 12 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/09Dic2025.jpg" alt="09 Dic 2025" loading="lazy"></div>
@@ -191,7 +183,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Slide 13 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/27Dic2025.jpg" alt="27 Dic 2025" loading="lazy"></div>
@@ -242,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-                <audio id="audioPlayer" preload="none"></audio>
+                <audio id="audioPlayer" preload="auto"></audio>
             </div>
 
             <!-- Playful card: initial question -->
@@ -328,7 +319,7 @@
             }
         });
 
-        // Vinyl player (fixed switching)
+        // Vinyl player – reordered: Amor Completo first
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -336,13 +327,14 @@
         const currentSongSpan = document.getElementById('currentSong');
         const vinylRecord = document.getElementById('vinylRecord');
 
+        // Updated songs array: "Amor Completo" first
         const songs = [
-            { title: "Chappell Roan - Picture You", src: "audio/Chappell Roan - Picture You.mp3" },
-            { title: "Lana Del Rey - Margaret", src: "audio/Lana Del Rey - Margaret.mp3" },
-            { title: "Laufey - Bewitched", src: "audio/Laufey - Bewitched.mp3" },
             { title: "Mon Laferte - Amor Completo", src: "audio/Mon Laferte - Amor Completo.mp3" },
             { title: "Mon Laferte - Bonita", src: "audio/Mon Laferte - Bonita.mp3" },
-            { title: "Natalia Lafourcade - Tus Ojitos", src: "audio/Natalia Lafourcade - Tus Ojitos.mp3" }
+            { title: "Natalia Lafourcade - Tus Ojitos", src: "audio/Natalia Lafourcade - Tus Ojitos.mp3" },
+            { title: "Chappell Roan - Picture You", src: "audio/Chappell Roan - Picture You.mp3" },
+            { title: "Lana Del Rey - Margaret", src: "audio/Lana Del Rey - Margaret.mp3" },
+            { title: "Laufey - Bewitched", src: "audio/Laufey - Bewitched.mp3" }
         ];
         let currentSongIndex = 0;
 
@@ -391,9 +383,12 @@
         prevBtn.addEventListener('click', prevSong);
         audio.addEventListener('ended', nextSong);
 
+        // Load the first song (Amor Completo) and attempt autoplay
         loadSong(0);
+        // Try to autoplay; browsers may block, so we attempt but don't show error
+        audio.play().catch(e => console.log("Autoplay blocked (user interaction needed)"));
 
-        // Particle system
+        // Particle system (shimmer)
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -453,7 +448,94 @@
         initParticles();
         animateParticles();
 
-        // Interactive game – exact requirements
+        // Heart canvas (floating hearts)
+        const heartCanvas = document.getElementById('heartCanvas');
+        const heartCtx = heartCanvas.getContext('2d');
+        let hearts = [];
+
+        function resizeHeartCanvas() {
+            heartCanvas.width = window.innerWidth;
+            heartCanvas.height = window.innerHeight;
+        }
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * heartCanvas.width;
+                this.y = heartCanvas.height + Math.random() * 50;
+                this.size = Math.random() * 15 + 8;
+                this.speedY = -(Math.random() * 1.5 + 0.8);
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random() * 0.6 + 0.3;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.rotation += this.rotationSpeed;
+                // Remove when off screen
+                if (this.y + this.size < 0 || this.x + this.size < 0 || this.x - this.size > heartCanvas.width) {
+                    return false;
+                }
+                return true;
+            }
+            draw() {
+                heartCtx.save();
+                heartCtx.translate(this.x, this.y);
+                heartCtx.rotate(this.rotation);
+                heartCtx.beginPath();
+                // Draw heart shape
+                heartCtx.moveTo(0, this.size * 0.3);
+                heartCtx.bezierCurveTo(
+                    -this.size * 0.5, -this.size * 0.3,
+                    -this.size * 0.2, -this.size * 0.7,
+                    0, -this.size * 0.5
+                );
+                heartCtx.bezierCurveTo(
+                    this.size * 0.2, -this.size * 0.7,
+                    this.size * 0.5, -this.size * 0.3,
+                    0, this.size * 0.3
+                );
+                heartCtx.fillStyle = `rgba(201, 123, 123, ${this.opacity})`;
+                heartCtx.fill();
+                heartCtx.restore();
+            }
+        }
+
+        function initHearts() {
+            hearts = [];
+            // Start with a few hearts
+            for (let i = 0; i < 15; i++) {
+                hearts.push(new Heart());
+            }
+        }
+
+        function animateHearts() {
+            if (!heartCtx) return;
+            heartCtx.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
+            // Add new hearts occasionally
+            if (Math.random() < 0.05) {
+                hearts.push(new Heart());
+                // Keep max 60 hearts for performance
+                if (hearts.length > 60) hearts.shift();
+            }
+            for (let i = hearts.length-1; i >= 0; i--) {
+                const alive = hearts[i].update();
+                hearts[i].draw();
+                if (!alive) hearts.splice(i,1);
+            }
+            requestAnimationFrame(animateHearts);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeHeartCanvas();
+        });
+
+        resizeHeartCanvas();
+        initHearts();
+        animateHearts();
+
+        // Interactive game – exact requirements (no changes)
         const noResponses = [
             "Apoco no amor.",
             "Mentirosaaa.",
@@ -532,12 +614,10 @@
 
         mentiraBtn.addEventListener('click', (e) => {
             if (mentiraAttempts < 10) {
-                // Move the button so it's hard to click
                 moveButton();
                 mentiraAttempts++;
                 e.stopPropagation();
             } else {
-                // After 3 attempts, show a playful defeat message and close
                 modalMessageDiv.textContent = 'Bueno, está bien... ¡yo te amo más!';
                 mentiraBtn.style.display = 'none';
                 setTimeout(() => closeModalFunc(), 2000);
