@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nuestro Aniversario | 18 Abril 2025</title>
     
-    <!-- Favicon (corazón) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C97B7B'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+    <!-- Favicon (flor) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C97B7B'%3E%3Cpath d='M12,2C9,2,6.5,4.5,6.5,7.5c0,2.5,2,4.5,4.5,4.5s4.5-2,4.5-4.5S15,2,12,2z M12,10c-1.4,0-2.5-1.1-2.5-2.5S10.6,5,12,5s2.5,1.1,2.5,2.5S13.4,10,12,10z M18.5,13c-1.4,0-2.5,1.1-2.5,2.5s1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5S19.9,13,18.5,13z M5.5,13c-1.4,0-2.5,1.1-2.5,2.5s1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5S6.9,13,5.5,13z M12,16c-2.2,0-4,1.8-4,4h8c0-2.2-1.8-4-4-4z'/%3E%3C/svg%3E">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (iconos de flores) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -24,8 +27,27 @@
 
     <canvas id="particles-canvas"></canvas>
 
+    <!-- Decoración floral superior -->
+    <div class="flower-decoration top-left">
+        <i class="fas fa-seedling"></i>
+        <i class="fas fa-leaf"></i>
+        <i class="fas fa-feather-alt"></i>
+    </div>
+    <div class="flower-decoration top-right">
+        <i class="fas fa-feather-alt"></i>
+        <i class="fas fa-leaf"></i>
+        <i class="fas fa-seedling"></i>
+    </div>
+
     <div class="container">
         <header class="hero" data-aos="fade-down">
+            <div class="flower-crown">
+                <i class="fas fa-leaf"></i>
+                <i class="fas fa-feather-alt"></i>
+                <i class="fas fa-seedling"></i>
+                <i class="fas fa-feather-alt"></i>
+                <i class="fas fa-leaf"></i>
+            </div>
             <h1>Nuestra historia</h1>
             <div class="date-badge">
                 <span>Desde el</span>
@@ -33,140 +55,174 @@
                 <span>hasta siempre</span>
             </div>
             <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
+            <div class="flower-crown bottom">
+                <i class="fas fa-leaf"></i>
+                <i class="fas fa-feather-alt"></i>
+                <i class="fas fa-seedling"></i>
+                <i class="fas fa-feather-alt"></i>
+                <i class="fas fa-leaf"></i>
+            </div>
         </header>
 
         <section class="carousel-section" data-aos="fade-up">
             <h2 class="section-title">El Gran Carrusel de Historias</h2>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- 1: 18Mar2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/18Mar2025.jpg" alt="18 de marzo 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>18 de marzo de 2025</h3>
-                            <p>El primer dibujito que me hiciste, me encantó y lo sigo guardando.</p>
-                        </div>
-                    </div>
-                    <!-- 2: 16Abr2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/16Abr2025.jpg" alt="16 de abril 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>16 de abril de 2025</h3>
-                            <p>Primera vez que nos vimos. Te amo, me gustaste desde la primera vez que te vi.</p>
+                    <!-- Diapositivas (mismo contenido que antes, pero con marco polaroid) -->
+                    <!-- 1 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/18Mar2025.jpg" alt="18 de marzo 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>18 de marzo de 2025</h3>
+                                <p>El primer dibujito que me hiciste, me encantó y lo sigo guardando.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 3: 19Abr2025_1.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/19Abr2025_1.jpg" alt="19 de abril 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>19 de abril de 2025</h3>
-                            <p>Nuestro hijo, jeje.</p>
-                        </div>
-                    </div>
-                    <!-- 4: 19Abr2025_2.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/19Abr2025_2.jpg" alt="19 de abril 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>19 de abril de 2025</h3>
-                            <p>Primer museo al que vamos.</p>
+                    <!-- 2 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/16Abr2025.jpg" alt="16 de abril 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>16 de abril de 2025</h3>
+                                <p>Primera vez que nos vimos. Te amo, me gustaste desde la primera vez que te vi.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 5: 19Abr2025_3.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/19Abr2025_3.jpg" alt="19 de abril 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>19 de abril de 2025</h3>
-                            <p>Día de feria.</p>
-                        </div>
-                    </div>
-                    <!-- 6: 21Abr2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/21Abr2025.jpg" alt="21 de abril 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>21 de abril de 2025</h3>
-                            <p>Te amo muchísimo.</p>
+                    <!-- 3 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/19Abr2025_1.jpg" alt="19 de abril 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>19 de abril de 2025</h3>
+                                <p>Nuestro hijo, jeje.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 7: 28Junio2025_1.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/28Junio2025_1.jpg" alt="28 de junio 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>28 de junio de 2025</h3>
-                            <p>Haciendo match.</p>
-                        </div>
-                    </div>
-                    <!-- 8: 28Junio2025_2.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/28Junio2025_2.jpg" alt="28 de junio 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>28 de junio de 2025</h3>
-                            <p>Nuestras pulseritas, me encanta.</p>
+                    <!-- 4 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/19Abr2025_2.jpg" alt="19 de abril 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>19 de abril de 2025</h3>
+                                <p>Primer museo al que vamos.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 9: 29Junio2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/29Junio2025.jpg" alt="29 de junio 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>29 de junio de 2025</h3>
-                            <p>Haciendo match de nuevo, jeje.</p>
-                        </div>
-                    </div>
-                    <!-- 10: 14Sep2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/14Sep2025.jpg" alt="14 de septiembre 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>14 de septiembre de 2025</h3>
-                            <p>Con amarille.</p>
+                    <!-- 5 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/19Abr2025_3.jpg" alt="19 de abril 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>19 de abril de 2025</h3>
+                                <p>Día de feria.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 11: 17Nov2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/17Nov2025.jpg" alt="17 de noviembre 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>17 de noviembre de 2025</h3>
-                            <p>Nos vemos tan bien juntas.</p>
-                        </div>
-                    </div>
-                    <!-- 12: 09Dic2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/09Dic2025.jpg" alt="9 de diciembre 2025">
-                        </div>
-                        <div class="slide-caption">
-                            <h3>9 de diciembre de 2025</h3>
-                            <p>Gracias por venir hasta Querétaro.</p>
+                    <!-- 6 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/21Abr2025.jpg" alt="21 de abril 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>21 de abril de 2025</h3>
+                                <p>Te amo muchísimo.</p>
+                            </div>
                         </div>
                     </div>
-                    <!-- 13: 27Dic2025.jpg -->
-                    <div class="swiper-slide">
-                        <div class="slide-image">
-                            <img src="images/27Dic2025.jpg" alt="27 de diciembre 2025">
+                    <!-- 7 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/28Junio2025_1.jpg" alt="28 de junio 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>28 de junio de 2025</h3>
+                                <p>Haciendo match.</p>
+                            </div>
                         </div>
-                        <div class="slide-caption">
-                            <h3>27 de diciembre de 2025</h3>
-                            <p>Me gustó mucho mi regalito.</p>
+                    </div>
+                    <!-- 8 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/28Junio2025_2.jpg" alt="28 de junio 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>28 de junio de 2025</h3>
+                                <p>Nuestras pulseritas, me encanta.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 9 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/29Junio2025.jpg" alt="29 de junio 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>29 de junio de 2025</h3>
+                                <p>Haciendo match de nuevo, jeje.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/14Sep2025.jpg" alt="14 de septiembre 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>14 de septiembre de 2025</h3>
+                                <p>Con amarille.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 11 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/17Nov2025.jpg" alt="17 de noviembre 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>17 de noviembre de 2025</h3>
+                                <p>Nos vemos tan bien juntas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 12 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/09Dic2025.jpg" alt="9 de diciembre 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>9 de diciembre de 2025</h3>
+                                <p>Gracias por venir hasta Querétaro.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 13 -->
+                    <div class="swiper-slide polaroid">
+                        <div class="polaroid-frame">
+                            <div class="polaroid-image">
+                                <img src="images/27Dic2025.jpg" alt="27 de diciembre 2025">
+                            </div>
+                            <div class="polaroid-caption">
+                                <h3>27 de diciembre de 2025</h3>
+                                <p>Me gustó mucho mi regalito.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -176,7 +232,7 @@
             </div>
         </section>
 
-        <!-- Carta mejorada -->
+        <!-- Carta vintage -->
         <section class="letter-section" data-aos="zoom-in">
             <div class="letter-container">
                 <div class="letter-paper">
@@ -191,6 +247,7 @@
                         <p class="letter-signature">Con todo mi amor,<br>tu persona favorita</p>
                     </div>
                     <div class="letter-seal"></div>
+                    <div class="letter-ribbon"></div>
                 </div>
             </div>
         </section>
@@ -199,6 +256,18 @@
             <p>Y esta es solo la primera página de nuestro libro...</p>
             <p class="signature">Siempre juntas</p>
         </footer>
+    </div>
+
+    <!-- Decoración floral inferior -->
+    <div class="flower-decoration bottom-left">
+        <i class="fas fa-seedling"></i>
+        <i class="fas fa-leaf"></i>
+        <i class="fas fa-feather-alt"></i>
+    </div>
+    <div class="flower-decoration bottom-right">
+        <i class="fas fa-feather-alt"></i>
+        <i class="fas fa-leaf"></i>
+        <i class="fas fa-seedling"></i>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -222,7 +291,7 @@
             }
         });
         
-        // Partículas (mismo código)
+        // Partículas (tonos pastel)
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -241,7 +310,9 @@
                 this.size = Math.random() * 2.5 + 1;
                 this.speedX = (Math.random() - 0.5) * 0.2;
                 this.speedY = (Math.random() - 0.5) * 0.2;
-                this.color = `hsl(${Math.random() * 20 + 350}, 60%, 65%)`;
+                // Colores suaves: dorado, rosa pálido, beige
+                const hue = Math.random() * 40 + 30; // 30-70 naranja/rosa
+                this.color = `hsl(${hue}, 70%, 75%)`;
                 this.alpha = Math.random() * 0.4 + 0.1;
             }
             update() {
