@@ -25,7 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- Background layers --- */
+/* Background layers */
 .paper-texture {
     position: fixed;
     top: 0;
@@ -85,7 +85,7 @@ body {
     padding: 2rem 1.5rem;
 }
 
-/* ===== HEADER (torn paper edge, photo corners) ===== */
+/* ===== HEADER (torn paper, photo corners) ===== */
 .hero {
     position: relative;
     margin-bottom: 4rem;
@@ -193,7 +193,7 @@ body {
     letter-spacing: 4px;
 }
 
-/* ===== CARRUSEL (polaroid) – unchanged except minor tweaks ===== */
+/* ===== CARRUSEL POLAROID ===== */
 .carousel-section {
     margin: 4rem 0;
 }
@@ -338,7 +338,7 @@ body {
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
 }
 
-/* ===== VINYL PLAYER (real images) ===== */
+/* ===== VINYL PLAYER (only record, no turntable) ===== */
 .vinyl-player {
     margin: 4rem 0;
     display: flex;
@@ -351,33 +351,17 @@ body {
     box-shadow: 0 15px 25px rgba(0,0,0,0.2);
     border: 1px solid var(--warm-gold);
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     text-align: center;
 }
-.turntable {
-    position: relative;
+.vinyl-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
 }
-.turntable-img {
-    width: 100%;
-    max-width: 280px;
-    border-radius: 8px;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
-}
-.vinyl-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140px;
-    height: 140px;
-    pointer-events: none;
-}
 .vinyl-record {
-    width: 100%;
+    width: 180px;
     height: auto;
     transition: transform 0.2s linear;
 }
@@ -415,7 +399,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ===== FOOTER (vintage decorated) ===== */
+/* ===== FOOTER ===== */
 .footer-message {
     text-align: center;
     margin-top: 4rem;
@@ -495,14 +479,10 @@ body {
         right: 10px;
     }
     .record-player {
-        max-width: 90%;
+        max-width: 280px;
     }
-    .turntable-img {
-        max-width: 220px;
-    }
-    .vinyl-container {
-        width: 110px;
-        height: 110px;
+    .vinyl-record {
+        width: 140px;
     }
     .control-btn {
         font-size: 1rem;
