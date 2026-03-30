@@ -406,7 +406,7 @@ body {
     margin-left: 0.5rem;
 }
 
-/* ===== PLAYFUL CARD ===== */
+/* ===== PLAYFUL CARD (initial) ===== */
 .playful-card {
     margin: 4rem auto;
     max-width: 500px;
@@ -474,6 +474,78 @@ body {
     display: none;
 }
 
+/* ===== MODAL (popup for the game) ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: var(--lace-white);
+    border-radius: 2rem;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--warm-gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--deep-burgundy);
+}
+.modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--deep-burgundy);
+    margin-bottom: 1rem;
+}
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    position: relative;
+}
+.modal-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 40px;
+    border: 1px solid var(--warm-gold);
+    background: var(--lace-white);
+    color: var(--deep-burgundy);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.modal-btn:hover {
+    background: var(--warm-gold);
+    color: white;
+}
+#mentiraBtn {
+    transition: all 0.3s ease;
+    position: relative;
+}
+.modal-message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--olive-muted);
+    font-style: italic;
+}
+
 /* ===== FOOTER ===== */
 .footer-message {
     text-align: center;
@@ -531,6 +603,8 @@ body {
     .playful-card h3 { font-size: 1.2rem; }
     .question { font-size: 1.5rem; }
     .love-btn { font-size: 1rem; padding: 0.4rem 1rem; }
+    .modal h3 { font-size: 1.4rem; }
+    .modal-btn { font-size: 1rem; }
 }
 @media (min-width: 1200px) {
     .container { max-width: 1400px; }

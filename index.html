@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome (controls) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Swiper -->
@@ -31,7 +31,7 @@
         <div class="grain-overlay"></div>
         <div class="vignette"></div>
 
-        <!-- Particle canvas (shimmer) -->
+        <!-- Particle canvas -->
         <canvas id="particleCanvas"></canvas>
 
         <!-- Floating flowers -->
@@ -245,7 +245,7 @@
                 <audio id="audioPlayer" preload="none"></audio>
             </div>
 
-            <!-- Playful card (recurring humorous responses) -->
+            <!-- Playful card: initial question -->
             <div class="playful-card" data-aos="fade-up">
                 <div class="playful-card-inner">
                     <h3>Un pequeño juego</h3>
@@ -255,6 +255,19 @@
                         <button class="love-btn" id="noBtn">No</button>
                     </div>
                     <div class="response" id="responseMessage"></div>
+                </div>
+            </div>
+
+            <!-- Modal for the "Yo te amo más!" game -->
+            <div id="loveModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3>Yo te amo más</h3>
+                    <div class="modal-buttons">
+                        <button id="ciertoBtn" class="modal-btn">Cierto</button>
+                        <button id="mentiraBtn" class="modal-btn">Mentira</button>
+                    </div>
+                    <div id="modalMessage" class="modal-message"></div>
                 </div>
             </div>
 
@@ -271,12 +284,12 @@
     </div>
 
     <script>
-        // AOS
+        // AOS init
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ duration: 1000, once: true, offset: 100 });
         });
 
-        // Swiper
+        // Swiper init
         document.addEventListener('DOMContentLoaded', () => {
             new Swiper('.mySwiper', {
                 loop: true,
@@ -315,7 +328,7 @@
             }
         });
 
-        // Vinyl player
+        // Vinyl player (fixed switching)
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -334,13 +347,16 @@
         let currentSongIndex = 0;
 
         function loadSong(index) {
+            const wasPlaying = !audio.paused;
+            audio.pause();
             audio.src = songs[index].src;
             audio.load();
             currentSongSpan.textContent = songs[index].title;
-            if (!audio.paused) {
-                audio.play().catch(e => console.log("Playback prevented"));
-                vinylRecord.classList.add('spinning');
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            if (wasPlaying) {
+                audio.play().then(() => {
+                    vinylRecord.classList.add('spinning');
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => console.log("Play failed"));
             } else {
                 vinylRecord.classList.remove('spinning');
                 playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
@@ -363,13 +379,11 @@
         function nextSong() {
             currentSongIndex = (currentSongIndex + 1) % songs.length;
             loadSong(currentSongIndex);
-            audio.play().catch(e => console.log("Play failed"));
         }
 
         function prevSong() {
             currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
             loadSong(currentSongIndex);
-            audio.play().catch(e => console.log("Play failed"));
         }
 
         playPauseBtn.addEventListener('click', playPause);
@@ -379,7 +393,7 @@
 
         loadSong(0);
 
-        // Particles
+        // Particle system
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -418,7 +432,9 @@
         function initParticles() {
             particles = [];
             const particleCount = Math.min(200, Math.floor(window.innerWidth * 0.15));
-            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
 
         function animateParticles() {
@@ -437,20 +453,7 @@
         initParticles();
         animateParticles();
 
-        // Playful card with recurring humorous responses (no emojis)
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const responseDiv = document.getElementById('responseMessage');
-
-        const yesResponses = [
-            "Eso no es verdad… ¡yo te amo más!",
-            "Mentira, la que más ama soy yo.",
-            "Imposible, me ganaste en terquedad, pero en amor no.",
-            "Falso, yo te amo desde antes de conocerte.",
-            "No puede ser, porque a mí me late más fuerte.",
-            "Eso es falso, yo te amo hasta el infinito y más allá."
-        ];
-
+        // Interactive game – exact requirements
         const noResponses = [
             "Mentirosa, te conozco… ¡me amas hasta el infinito!",
             "No te creo, seguro te da pena decirlo.",
@@ -459,29 +462,85 @@
             "Imposible, te amo tanto que no puedes negarlo.",
             "Mentirosa, yo sé que tu corazón dice sí."
         ];
-
-        let yesIndex = 0;
         let noIndex = 0;
-
-        function showResponse(message) {
-            responseDiv.textContent = message;
-            responseDiv.style.opacity = '0';
-            responseDiv.style.display = 'block';
-            setTimeout(() => { responseDiv.style.opacity = '1'; }, 10);
-            // Add a tiny visual bounce to the card
-            const cardInner = document.querySelector('.playful-card-inner');
-            cardInner.style.transform = 'scale(1.01)';
-            setTimeout(() => { cardInner.style.transform = ''; }, 150);
-        }
-
-        yesBtn.addEventListener('click', () => {
-            showResponse(yesResponses[yesIndex % yesResponses.length]);
-            yesIndex++;
-        });
+        const noBtn = document.getElementById('noBtn');
+        const responseDiv = document.getElementById('responseMessage');
 
         noBtn.addEventListener('click', () => {
-            showResponse(noResponses[noIndex % noResponses.length]);
+            responseDiv.textContent = noResponses[noIndex % noResponses.length];
+            responseDiv.style.display = 'block';
+            responseDiv.style.opacity = '0';
+            setTimeout(() => responseDiv.style.opacity = '1', 10);
             noIndex++;
+            setTimeout(() => {
+                responseDiv.style.opacity = '0';
+                setTimeout(() => responseDiv.style.display = 'none', 500);
+            }, 3000);
+        });
+
+        // Modal for Sí
+        const modal = document.getElementById('loveModal');
+        const closeModal = document.querySelector('.close-modal');
+        const yesBtn = document.getElementById('yesBtn');
+        const ciertoBtn = document.getElementById('ciertoBtn');
+        const mentiraBtn = document.getElementById('mentiraBtn');
+        const modalMessageDiv = document.getElementById('modalMessage');
+        let mentiraAttempts = 0;
+
+        function showModal() {
+            modal.style.display = 'flex';
+            // reset button position
+            mentiraBtn.style.position = 'relative';
+            mentiraBtn.style.top = 'auto';
+            mentiraBtn.style.left = 'auto';
+            mentiraBtn.style.transform = 'translate(0,0)';
+            mentiraAttempts = 0;
+            modalMessageDiv.textContent = '';
+            mentiraBtn.style.display = 'inline-block';
+        }
+
+        function closeModalFunc() {
+            modal.style.display = 'none';
+        }
+
+        yesBtn.addEventListener('click', showModal);
+        closeModal.addEventListener('click', closeModalFunc);
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModalFunc();
+        });
+
+        ciertoBtn.addEventListener('click', () => {
+            modalMessageDiv.textContent = 'Lo sabía. Eres la persona más increíble.';
+            setTimeout(() => {
+                closeModalFunc();
+            }, 2000);
+        });
+
+        function moveButton() {
+            const modalContent = document.querySelector('.modal-content');
+            const btnRect = mentiraBtn.getBoundingClientRect();
+            const modalRect = modalContent.getBoundingClientRect();
+            const maxX = modalRect.width - btnRect.width - 20;
+            const maxY = modalRect.height - btnRect.height - 20;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            mentiraBtn.style.position = 'relative';
+            mentiraBtn.style.top = newY + 'px';
+            mentiraBtn.style.left = newX + 'px';
+        }
+
+        mentiraBtn.addEventListener('click', (e) => {
+            if (mentiraAttempts < 3) {
+                // Move the button so it's hard to click
+                moveButton();
+                mentiraAttempts++;
+                e.stopPropagation();
+            } else {
+                // After 3 attempts, show a playful defeat message and close
+                modalMessageDiv.textContent = 'Bueno, está bien... ¡yo te amo más!';
+                mentiraBtn.style.display = 'none';
+                setTimeout(() => closeModalFunc(), 2000);
+            }
         });
     </script>
 </body>
