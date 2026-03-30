@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome (for control icons) -->
+    <!-- Font Awesome (for controls) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Swiper -->
@@ -25,244 +25,249 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background layers -->
-    <div class="paper-texture"></div>
-    <div class="grain-overlay"></div>
-    <div class="vignette"></div>
+    <div id="app">
+        <!-- Background layers (stretch with content) -->
+        <div class="paper-texture"></div>
+        <div class="grain-overlay"></div>
+        <div class="vignette"></div>
 
-    <!-- Flower stickers container -->
-    <div id="flower-stickers-container"></div>
+        <!-- Particle canvas (shimmering stars/glitter) -->
+        <canvas id="particleCanvas"></canvas>
 
-    <div class="container">
-        <!-- Header with custom camera and leaves -->
-        <header class="hero" data-aos="fade-down">
-            <div class="torn-edge top"></div>
-            <div class="photo-corners">
-                <div class="corner top-left"></div>
-                <div class="corner top-right"></div>
-                <div class="corner bottom-left"></div>
-                <div class="corner bottom-right"></div>
-            </div>
-            <div class="hero-content">
-                <div class="vintage-icon">
-                    <img src="icons/camera.png" alt="camera" class="icon-camera">
-                </div>
-                <h1>Nuestra historia</h1>
-                <div class="date-badge">
-                    <span>Desde el</span>
-                    <strong>18 de abril de 2025</strong>
-                    <span>hasta siempre</span>
-                </div>
-                <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
-                <div class="vintage-separator">
-                    <img src="icons/leaves.png" alt="leaf" class="icon-sep">
-                    <img src="icons/leaves.png" alt="leaf" class="icon-sep">
-                </div>
-            </div>
-            <div class="torn-edge bottom"></div>
-        </header>
+        <!-- Floating flowers container (absolute, inside #app) -->
+        <div id="flower-stickers-container"></div>
 
-        <!-- Carrusel Polaroid (13 slides) -->
-        <section class="carousel-section" data-aos="fade-up">
-            <h2 class="section-title">El Gran Carrusel de Historias</h2>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <!-- 1 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/18Mar2025.jpg" alt="18 Mar 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">18 de marzo de 2025</p>
-                                <p>El primer dibujito que me hiciste, me encantó y lo sigo guardando.</p>
-                            </div>
-                        </div>
+        <div class="container">
+            <!-- Header with torn paper and photo corners -->
+            <header class="hero" data-aos="fade-down">
+                <div class="torn-edge top"></div>
+                <div class="photo-corners">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                </div>
+                <div class="hero-content">
+                    <div class="vintage-icon">
+                        <img src="icons/camera.png" alt="camera" class="icon-camera">
                     </div>
-                    <!-- 2 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/16Abr2025.jpg" alt="16 Abr 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">16 de abril de 2025</p>
-                                <p>Primera vez que nos vimos. Te amo, me gustaste desde la primera vez que te vi.</p>
-                            </div>
-                        </div>
+                    <h1>Nuestra historia</h1>
+                    <div class="date-badge">
+                        <span>Desde el</span>
+                        <strong>18 de abril de 2025</strong>
+                        <span>hasta siempre</span>
                     </div>
-                    <!-- 3 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/19Abr2025_1.jpg" alt="19 Abr 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">19 de abril de 2025</p>
-                                <p>Nuestro hijo, jeje.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/19Abr2025_2.jpg" alt="19 Abr 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">19 de abril de 2025</p>
-                                <p>Primer museo al que vamos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 5 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/19Abr2025_3.jpg" alt="19 Abr 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">19 de abril de 2025</p>
-                                <p>Día de feria.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 6 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/21Abr2025.jpg" alt="21 Abr 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">21 de abril de 2025</p>
-                                <p>Te amo muchísimo.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 7 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/28Junio2025_1.jpg" alt="28 Jun 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">28 de junio de 2025</p>
-                                <p>Haciendo match.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 8 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/28Junio2025_2.jpg" alt="28 Jun 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">28 de junio de 2025</p>
-                                <p>Nuestras pulseritas, me encanta.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 9 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/29Junio2025.jpg" alt="29 Jun 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">29 de junio de 2025</p>
-                                <p>Haciendo match de nuevo, jeje.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 10 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/14Sep2025.jpg" alt="14 Sep 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">14 de septiembre de 2025</p>
-                                <p>Con amarille.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 11 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/17Nov2025.jpg" alt="17 Nov 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">17 de noviembre de 2025</p>
-                                <p>Nos vemos tan bien juntas.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 12 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/09Dic2025.jpg" alt="09 Dic 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">9 de diciembre de 2025</p>
-                                <p>Gracias por venir hasta Querétaro.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 13 -->
-                    <div class="swiper-slide polaroid">
-                        <div class="polaroid-inner">
-                            <div class="polaroid-photo"><img src="images/27Dic2025.jpg" alt="27 Dic 2025" loading="lazy"></div>
-                            <div class="polaroid-caption">
-                                <p class="polaroid-date">27 de diciembre de 2025</p>
-                                <p>Me gustó mucho mi regalito.</p>
-                            </div>
-                        </div>
+                    <p class="hero-sub">Un viaje de amor, risas y sueños compartidos</p>
+                    <div class="vintage-separator">
+                        <img src="icons/leaves.png" alt="leaf" class="icon-sep">
+                        <img src="icons/leaves.png" alt="leaf" class="icon-sep">
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
+                <div class="torn-edge bottom"></div>
+            </header>
 
-        <!-- Carta con sello -->
-        <section class="letter-section" data-aos="zoom-in">
-            <div class="letter-paper">
-                <div class="letter-header">
-                    <span class="letter-date">18 de abril de 2026</span>
+            <!-- Carrusel Polaroid (13 slides) -->
+            <section class="carousel-section" data-aos="fade-up">
+                <h2 class="section-title">El Gran Carrusel de Historias</h2>
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/18Mar2025.jpg" alt="18 Mar 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">18 de marzo de 2025</p>
+                                    <p>El primer dibujito que me hiciste, me encantó y lo sigo guardando.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/16Abr2025.jpg" alt="16 Abr 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">16 de abril de 2025</p>
+                                    <p>Primera vez que nos vimos. Te amo, me gustaste desde la primera vez que te vi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/19Abr2025_1.jpg" alt="19 Abr 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">19 de abril de 2025</p>
+                                    <p>Nuestro hijo, jeje.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/19Abr2025_2.jpg" alt="19 Abr 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">19 de abril de 2025</p>
+                                    <p>Primer museo al que vamos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/19Abr2025_3.jpg" alt="19 Abr 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">19 de abril de 2025</p>
+                                    <p>Día de feria.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 6 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/21Abr2025.jpg" alt="21 Abr 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">21 de abril de 2025</p>
+                                    <p>Te amo muchísimo.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 7 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/28Junio2025_1.jpg" alt="28 Jun 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">28 de junio de 2025</p>
+                                    <p>Haciendo match.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 8 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/28Junio2025_2.jpg" alt="28 Jun 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">28 de junio de 2025</p>
+                                    <p>Nuestras pulseritas, me encanta.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 9 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/29Junio2025.jpg" alt="29 Jun 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">29 de junio de 2025</p>
+                                    <p>Haciendo match de nuevo, jeje.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 10 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/14Sep2025.jpg" alt="14 Sep 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">14 de septiembre de 2025</p>
+                                    <p>Con amarille.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 11 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/17Nov2025.jpg" alt="17 Nov 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">17 de noviembre de 2025</p>
+                                    <p>Nos vemos tan bien juntas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 12 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/09Dic2025.jpg" alt="09 Dic 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">9 de diciembre de 2025</p>
+                                    <p>Gracias por venir hasta Querétaro.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 13 -->
+                        <div class="swiper-slide polaroid">
+                            <div class="polaroid-inner">
+                                <div class="polaroid-photo"><img src="images/27Dic2025.jpg" alt="27 Dic 2025" loading="lazy"></div>
+                                <div class="polaroid-caption">
+                                    <p class="polaroid-date">27 de diciembre de 2025</p>
+                                    <p>Me gustó mucho mi regalito.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <div class="letter-body">
-                    <p>Hoy celebramos nuestro primer aniversario y, al recorrer estos momentos en fotos, me doy cuenta de lo afortunada que soy de tenerte.</p>
-                    <p>Desde aquel 18 de abril de 2025 en que comenzamos este camino juntas, cada día ha tenido un sentido especial.</p>
-                    <p>Gracias por cada risa compartida, por todo el esfuerzo que haces, por matchear mis vibes, por los detalles que guardo con tanto cariño y por ser mi compañera favorita en todo lo que hacemos.</p>
-                    <p>Me encanta nuestra historia, me encanta lo que somos y la forma en que conectamos siempre.</p>
-                    <p class="letter-signature">Con todo mi amor,<br>tu persona favorita</p>
-                </div>
-                <div class="wax-stamp">
-                    <img src="images/waxstamp.png" alt="wax stamp">
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Vinyl player -->
-        <div class="vinyl-player" data-aos="fade-up">
-            <div class="record-player">
-                <div class="vinyl-wrapper">
-                    <img src="images/vinyl.png" class="vinyl-record" id="vinylRecord" alt="vinyl record">
-                </div>
-                <div class="controls">
-                    <button id="playPauseBtn" class="control-btn"><i class="fas fa-play"></i></button>
-                    <button id="prevBtn" class="control-btn"><i class="fas fa-step-backward"></i></button>
-                    <button id="nextBtn" class="control-btn"><i class="fas fa-step-forward"></i></button>
-                    <div class="song-info">
-                        <span id="currentSong">Canción 1</span>
+            <!-- Carta (letter) -->
+            <section class="letter-section" data-aos="zoom-in">
+                <div class="letter-paper">
+                    <div class="letter-header">
+                        <span class="letter-date">18 de abril de 2026</span>
+                    </div>
+                    <div class="letter-body">
+                        <p>Hoy celebramos nuestro primer aniversario y, al recorrer estos momentos en fotos, me doy cuenta de lo afortunada que soy de tenerte.</p>
+                        <p>Desde aquel 18 de abril de 2025 en que comenzamos este camino juntas, cada día ha tenido un sentido especial.</p>
+                        <p>Gracias por cada risa compartida, por todo el esfuerzo que haces, por matchear mis vibes, por los detalles que guardo con tanto cariño y por ser mi compañera favorita en todo lo que hacemos.</p>
+                        <p>Me encanta nuestra historia, me encanta lo que somos y la forma en que conectamos siempre.</p>
+                        <p class="letter-signature">Con todo mi amor,<br>tu persona favorita</p>
+                    </div>
+                    <div class="wax-stamp">
+                        <img src="images/waxstamp.png" alt="wax stamp">
                     </div>
                 </div>
+            </section>
+
+            <!-- Vinyl player -->
+            <div class="vinyl-player" data-aos="fade-up">
+                <div class="record-player">
+                    <div class="vinyl-wrapper">
+                        <img src="images/vinyl.png" class="vinyl-record" id="vinylRecord" alt="vinyl record">
+                    </div>
+                    <div class="controls">
+                        <button id="playPauseBtn" class="control-btn"><i class="fas fa-play"></i></button>
+                        <button id="prevBtn" class="control-btn"><i class="fas fa-step-backward"></i></button>
+                        <button id="nextBtn" class="control-btn"><i class="fas fa-step-forward"></i></button>
+                        <div class="song-info">
+                            <span id="currentSong">Canción 1</span>
+                        </div>
+                    </div>
+                </div>
+                <audio id="audioPlayer" preload="none">
+                    <source src="audio/song1.mp3" type="audio/mpeg">
+                    <source src="audio/song2.mp3" type="audio/mpeg">
+                    <source src="audio/song3.mp3" type="audio/mpeg">
+                </audio>
             </div>
-            <audio id="audioPlayer" preload="none">
-                <source src="audio/song1.mp3" type="audio/mpeg">
-                <source src="audio/song2.mp3" type="audio/mpeg">
-                <source src="audio/song3.mp3" type="audio/mpeg">
-            </audio>
+
+            <!-- Footer -->
+            <footer class="footer-message">
+                <div class="footer-decoration">
+                    <img src="icons/leaves.png" alt="leaf" class="icon-footer">
+                    <img src="icons/leaves.png" alt="leaf" class="icon-footer">
+                </div>
+                <p>Y esta es solo la primera página de nuestro libro...</p>
+                <p class="signature">Siempre juntas</p>
+            </footer>
         </div>
-
-        <!-- Footer – only leaves, no vinyl icon -->
-        <footer class="footer-message">
-            <div class="footer-decoration">
-                <img src="icons/leaves.png" alt="leaf" class="icon-footer">
-                <img src="icons/leaves.png" alt="leaf" class="icon-footer">
-            </div>
-            <p>Y esta es solo la primera página de nuestro libro...</p>
-            <p class="signature">Siempre juntas</p>
-        </footer>
     </div>
 
     <script>
-        // Initialize AOS
+        // AOS init
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ duration: 1000, once: true, offset: 100 });
         });
 
-        // Initialize Swiper
+        // Swiper init
         document.addEventListener('DOMContentLoaded', () => {
             new Swiper('.mySwiper', {
                 loop: true,
@@ -279,7 +284,7 @@
             });
         });
 
-        // Flower stickers (lazy load)
+        // Floating flowers (46 PNGs)
         window.addEventListener('load', () => {
             const container = document.getElementById('flower-stickers-container');
             const flowerCount = 46;
@@ -361,6 +366,70 @@
         audio.addEventListener('ended', nextSong);
 
         loadSong(0);
+
+        // Particle system (glitter/stars)
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.speedY = (Math.random() - 0.5) * 0.2;
+                // Colors: warm gold, soft pink, white
+                const hue = Math.random() * 40 + 30; // 30-70
+                this.color = `hsla(${hue}, 80%, 70%, 0.5)`;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(200, Math.floor(window.innerWidth * 0.15));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        resizeCanvas();
+        initParticles();
+        animateParticles();
     </script>
 </body>
 </html>
