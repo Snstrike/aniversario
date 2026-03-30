@@ -5,34 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nuestro Aniversario | 18 Abril 2025</title>
     
-    <!-- Favicon (simple heart) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23944141'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
+    <!-- Google Fonts: elegant serif + clean sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Google Fonts (Inter + Playfair Display) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Swiper -->
+    <!-- Swiper for carousel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <!-- AOS -->
+    <!-- AOS for scroll animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Background flower stickers (absolute positioned PNGs) -->
-    <div class="flower-stickers">
-        <!-- Replace these with your own PNG files -->
-        <img src="https://cdn-icons-png.flaticon.com/512/1087/1087840.png" class="flower sticker-1">
-        <img src="https://cdn-icons-png.flaticon.com/512/2077/2077625.png" class="flower sticker-2">
-        <img src="https://cdn-icons-png.flaticon.com/512/1047/1047058.png" class="flower sticker-3">
-        <img src="https://cdn-icons-png.flaticon.com/512/1098/1098608.png" class="flower sticker-4">
-        <img src="https://cdn-icons-png.flaticon.com/512/3069/3069170.png" class="flower sticker-5">
-        <img src="https://cdn-icons-png.flaticon.com/512/1087/1087840.png" class="flower sticker-6">
-        <img src="https://cdn-icons-png.flaticon.com/512/2077/2077625.png" class="flower sticker-7">
-        <img src="https://cdn-icons-png.flaticon.com/512/1047/1047058.png" class="flower sticker-8">
-    </div>
+    <!-- Background texture (subtle paper) -->
+    <div class="paper-texture"></div>
+    
+    <!-- Container for vintage flower stickers (JS will populate) -->
+    <div id="flower-stickers-container"></div>
+    
+    <!-- Grain overlay -->
+    <div class="grain-overlay"></div>
 
     <div class="container">
         <header class="hero" data-aos="fade-down">
@@ -49,7 +43,7 @@
             <h2 class="section-title">El Gran Carrusel de Historias</h2>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <!-- POLAROIDS (13) – replace src with your actual images -->
+                    <!-- 13 polaroids (photos with captions) -->
                     <div class="swiper-slide polaroid">
                         <div class="polaroid-inner">
                             <div class="polaroid-photo">
@@ -200,7 +194,7 @@
             </div>
         </section>
 
-        <!-- Vintage letter with stamp -->
+        <!-- Vintage letter with wax stamp -->
         <section class="letter-section" data-aos="zoom-in">
             <div class="letter-paper">
                 <div class="letter-header">
@@ -213,9 +207,8 @@
                     <p>Me encanta nuestra historia, me encanta lo que somos y la forma en que conectamos siempre.</p>
                     <p class="letter-signature">Con todo mi amor,<br>tu persona favorita</p>
                 </div>
-                <!-- Stamp (replaces the circle) -->
-                <div class="letter-stamp">
-                    <img src="https://cdn-icons-png.flaticon.com/512/6631/6631261.png" alt="wax stamp">
+                <div class="wax-stamp">
+                    <span>❤️</span>
                 </div>
             </div>
         </section>
@@ -226,10 +219,11 @@
         </footer>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS
         AOS.init({ duration: 1000, once: true, offset: 100 });
         
+        // Initialize Swiper (touch carousel)
         const swiper = new Swiper('.mySwiper', {
             loop: true,
             speed: 600,
@@ -243,6 +237,29 @@
                 1024: { slidesPerView: 3, spaceBetween: 30 }
             }
         });
+
+        // Load 46 vintage flower stickers dynamically
+        const container = document.getElementById('flower-stickers-container');
+        const flowerCount = 46;
+        for (let i = 1; i <= flowerCount; i++) {
+            const img = document.createElement('img');
+            img.src = `images/flowers/flower (${i}).png`;
+            img.classList.add('vintage-flower');
+            // Random position, rotation, size
+            const top = Math.random() * 100; // vh
+            const left = Math.random() * 100; // vw
+            const rotate = (Math.random() - 0.5) * 30; // -15 to 15 deg
+            const scale = 0.5 + Math.random() * 0.7; // 0.5 to 1.2
+            const opacity = 0.2 + Math.random() * 0.3; // 0.2 to 0.5
+            img.style.top = `${top}%`;
+            img.style.left = `${left}%`;
+            img.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+            img.style.opacity = opacity;
+            img.style.position = 'absolute';
+            img.style.pointerEvents = 'none';
+            img.style.zIndex = 1;
+            container.appendChild(img);
+        }
     </script>
 </body>
 </html>
