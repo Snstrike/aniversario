@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome (controls) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Swiper -->
@@ -69,11 +69,16 @@
                 <div class="torn-edge bottom"></div>
             </header>
 
-            <!-- Scroll indicator -->
+            <!-- Scroll indicator – elegant heart & arrow -->
             <div class="scroll-indicator" onclick="window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2 L12 20 M7 15 L12 20 L17 15" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                </svg>
+                <div class="scroll-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2 L12 18 M8 14 L12 18 L16 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 20 L12 22" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                        <circle cx="12" cy="18" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="scroll-text">desliza</div>
             </div>
 
             <!-- Carrusel Polaroid (13 slides) -->
@@ -81,7 +86,7 @@
                 <h2 class="section-title">Nuestro año juntas</h2>
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <!-- All 13 slides – same as previous -->
+                        <!-- Slide 1 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/18Mar2025.jpg" alt="18 Mar 2025" loading="lazy"></div>
@@ -91,6 +96,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 2 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/16Abr2025.jpg" alt="16 Abr 2025" loading="lazy"></div>
@@ -100,6 +106,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 3 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_1.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -109,6 +116,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 4 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_2.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -118,6 +126,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 5 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/19Abr2025_3.jpg" alt="19 Abr 2025" loading="lazy"></div>
@@ -127,6 +136,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 6 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/21Abr2025.jpg" alt="21 Abr 2025" loading="lazy"></div>
@@ -136,6 +146,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 7 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/28Junio2025_1.jpg" alt="28 Jun 2025" loading="lazy"></div>
@@ -145,6 +156,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 8 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/28Junio2025_2.jpg" alt="28 Jun 2025" loading="lazy"></div>
@@ -154,6 +166,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 9 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/29Junio2025.jpg" alt="29 Jun 2025" loading="lazy"></div>
@@ -163,6 +176,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 10 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/14Sep2025.jpg" alt="14 Sep 2025" loading="lazy"></div>
@@ -172,6 +186,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 11 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/17Nov2025.jpg" alt="17 Nov 2025" loading="lazy"></div>
@@ -181,6 +196,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 12 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/09Dic2025.jpg" alt="09 Dic 2025" loading="lazy"></div>
@@ -190,6 +206,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 13 -->
                         <div class="swiper-slide polaroid">
                             <div class="polaroid-inner">
                                 <div class="polaroid-photo"><img src="images/27Dic2025.jpg" alt="27 Dic 2025" loading="lazy"></div>
@@ -326,7 +343,7 @@
             }
         });
 
-        // Vinyl player – reordered: Amor Completo first
+        // Vinyl player – Amor Completo first
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -389,7 +406,6 @@
         prevBtn.addEventListener('click', prevSong);
         audio.addEventListener('ended', nextSong);
 
-        // Load first song and try autoplay
         loadSong(0);
         audio.play().catch(e => console.log("Autoplay blocked"));
 
@@ -527,7 +543,7 @@
         initHearts();
         animateHearts();
 
-        // Interactive game – fixed no button lag and mentira never disappears
+        // Interactive game – fixed no button lag & mentira never disappears
         const noResponses = [
             "Apoco no amor.",
             "Mentirosaaa.",
@@ -546,11 +562,9 @@
             responseDiv.textContent = msg;
             responseDiv.style.display = 'block';
             responseDiv.style.opacity = '0';
-            // Force reflow
-            void responseDiv.offsetHeight;
+            void responseDiv.offsetHeight; // force reflow
             responseDiv.style.opacity = '1';
             noIndex++;
-            // Auto hide after 2.5s
             setTimeout(() => {
                 responseDiv.style.opacity = '0';
                 setTimeout(() => {
@@ -575,7 +589,6 @@
 
         function showModal() {
             modal.style.display = 'flex';
-            // reset button position
             mentiraBtn.style.position = 'relative';
             mentiraBtn.style.top = 'auto';
             mentiraBtn.style.left = 'auto';
@@ -597,16 +610,13 @@
 
         ciertoBtn.addEventListener('click', () => {
             modalMessageDiv.textContent = 'Lo sabía. Eres la persona más increíble.';
-            setTimeout(() => {
-                closeModalFunc();
-            }, 2000);
+            setTimeout(() => closeModalFunc(), 2000);
         });
 
         function moveButton() {
             const modalContent = document.querySelector('.modal-content');
             const btnRect = mentiraBtn.getBoundingClientRect();
             const modalRect = modalContent.getBoundingClientRect();
-            // Calculate maximum safe position
             const maxX = modalRect.width - btnRect.width - 20;
             const maxY = modalRect.height - btnRect.height - 20;
             const newX = Math.random() * Math.max(0, maxX);

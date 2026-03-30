@@ -133,29 +133,51 @@ body {
     padding: 1.5rem 1rem;
 }
 
-/* Scroll indicator (romantic arrow) */
+/* Scroll indicator – elegant heart & arrow */
 .scroll-indicator {
     text-align: center;
     margin: 1rem auto 2rem;
-    opacity: 0.7;
-    animation: bounce 2s infinite;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    transition: opacity 0.3s ease;
+    animation: subtlePulse 2s infinite;
 }
-.scroll-indicator svg {
-    width: 32px;
-    height: 32px;
-    fill: none;
+.scroll-icon svg {
+    width: 36px;
+    height: 36px;
     stroke: var(--deep-burgundy);
-    stroke-width: 1.5;
+    stroke-width: 1.2;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
+.scroll-text {
+    font-family: 'Caveat', cursive;
+    font-size: 0.9rem;
+    color: var(--deep-burgundy);
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+.scroll-indicator:hover .scroll-icon svg {
+    transform: translateY(3px);
+    filter: drop-shadow(0 0 4px rgba(201, 123, 123, 0.6));
+}
+.scroll-indicator:hover .scroll-text {
+    opacity: 1;
+}
+@keyframes subtlePulse {
+    0% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(3px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 0.6; }
 }
 @media (max-width: 768px) {
-    .scroll-indicator svg {
+    .scroll-icon svg {
         width: 28px;
         height: 28px;
+    }
+    .scroll-text {
+        font-size: 0.75rem;
     }
     .scroll-indicator {
         margin: 0.5rem auto 1rem;
