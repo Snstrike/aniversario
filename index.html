@@ -227,7 +227,7 @@
                 </div>
             </section>
 
-            <!-- Vinyl player -->
+            <!-- Vinyl player (6 songs) -->
             <div class="vinyl-player" data-aos="fade-up">
                 <div class="record-player">
                     <div class="vinyl-wrapper">
@@ -243,9 +243,7 @@
                     </div>
                 </div>
                 <audio id="audioPlayer" preload="none">
-                    <source src="audio/song1.mp3" type="audio/mpeg">
-                    <source src="audio/song2.mp3" type="audio/mpeg">
-                    <source src="audio/song3.mp3" type="audio/mpeg">
+                    <!-- Audio sources will be set dynamically in JS -->
                 </audio>
             </div>
 
@@ -306,7 +304,7 @@
             }
         });
 
-        // Vinyl player logic
+        // Vinyl player with 6 songs
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -314,10 +312,14 @@
         const currentSongSpan = document.getElementById('currentSong');
         const vinylRecord = document.getElementById('vinylRecord');
 
+        // List of songs (title and filename)
         const songs = [
-            { title: "Nuestra canción", src: "audio/song1.mp3" },
-            { title: "Aquel día", src: "audio/song2.mp3" },
-            { title: "Siempre juntas", src: "audio/song3.mp3" }
+            { title: "Chappell Roan - Picture You", src: "audio/Chappell Roan - Picture You.mp3" },
+            { title: "Lana Del Rey - Margaret", src: "audio/Lana Del Rey - Margaret.mp3" },
+            { title: "Laufey - Bewitched", src: "audio/Laufey - Bewitched.mp3" },
+            { title: "Mon Laferte - Amor Completo", src: "audio/Mon Laferte - Amor Completo.mp3" },
+            { title: "Mon Laferte - Bonita", src: "audio/Mon Laferte - Bonita.mp3" },
+            { title: "Natalia Lafourcade - Tus Ojitos", src: "audio/Natalia Lafourcade - Tus Ojitos.mp3" }
         ];
         let currentSongIndex = 0;
 
@@ -384,8 +386,7 @@
                 this.size = Math.random() * 3 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 0.2;
                 this.speedY = (Math.random() - 0.5) * 0.2;
-                // Colors: warm gold, soft pink, white
-                const hue = Math.random() * 40 + 30; // 30-70
+                const hue = Math.random() * 40 + 30; // warm tones
                 this.color = `hsla(${hue}, 80%, 70%, 0.5)`;
             }
             update() {
