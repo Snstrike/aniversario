@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Nuestro Aniversario | 18 Abril 2025</title>
     
-    <!-- Favicon (vintage heart) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236F2A2A'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome (for controls) -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Swiper -->
@@ -26,19 +26,19 @@
 </head>
 <body>
     <div id="app">
-        <!-- Background layers (stretch with content) -->
+        <!-- Background layers -->
         <div class="paper-texture"></div>
         <div class="grain-overlay"></div>
         <div class="vignette"></div>
 
-        <!-- Particle canvas (shimmering stars/glitter) -->
+        <!-- Particle canvas (shimmer) -->
         <canvas id="particleCanvas"></canvas>
 
-        <!-- Floating flowers container (absolute, inside #app) -->
+        <!-- Floating flowers -->
         <div id="flower-stickers-container"></div>
 
         <div class="container">
-            <!-- Header with torn paper and photo corners -->
+            <!-- Header -->
             <header class="hero" data-aos="fade-down">
                 <div class="torn-edge top"></div>
                 <div class="photo-corners">
@@ -208,7 +208,7 @@
                 </div>
             </section>
 
-            <!-- Carta (letter) -->
+            <!-- Carta -->
             <section class="letter-section" data-aos="zoom-in">
                 <div class="letter-paper">
                     <div class="letter-header">
@@ -242,9 +242,20 @@
                         </div>
                     </div>
                 </div>
-                <audio id="audioPlayer" preload="none">
-                    <!-- Audio sources will be set dynamically in JS -->
-                </audio>
+                <audio id="audioPlayer" preload="none"></audio>
+            </div>
+
+            <!-- Playful card (recurring humorous responses) -->
+            <div class="playful-card" data-aos="fade-up">
+                <div class="playful-card-inner">
+                    <h3>Un pequeño juego</h3>
+                    <p class="question">¿Me amas?</p>
+                    <div class="buttons">
+                        <button class="love-btn" id="yesBtn">Sí</button>
+                        <button class="love-btn" id="noBtn">No</button>
+                    </div>
+                    <div class="response" id="responseMessage"></div>
+                </div>
             </div>
 
             <!-- Footer -->
@@ -260,12 +271,12 @@
     </div>
 
     <script>
-        // AOS init
+        // AOS
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ duration: 1000, once: true, offset: 100 });
         });
 
-        // Swiper init
+        // Swiper
         document.addEventListener('DOMContentLoaded', () => {
             new Swiper('.mySwiper', {
                 loop: true,
@@ -282,7 +293,7 @@
             });
         });
 
-        // Floating flowers (46 PNGs)
+        // Floating flowers
         window.addEventListener('load', () => {
             const container = document.getElementById('flower-stickers-container');
             const flowerCount = 46;
@@ -304,7 +315,7 @@
             }
         });
 
-        // Vinyl player with 6 songs
+        // Vinyl player
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -312,7 +323,6 @@
         const currentSongSpan = document.getElementById('currentSong');
         const vinylRecord = document.getElementById('vinylRecord');
 
-        // List of songs (title and filename)
         const songs = [
             { title: "Chappell Roan - Picture You", src: "audio/Chappell Roan - Picture You.mp3" },
             { title: "Lana Del Rey - Margaret", src: "audio/Lana Del Rey - Margaret.mp3" },
@@ -369,7 +379,7 @@
 
         loadSong(0);
 
-        // Particle system (glitter/stars)
+        // Particles
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -386,7 +396,7 @@
                 this.size = Math.random() * 3 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 0.2;
                 this.speedY = (Math.random() - 0.5) * 0.2;
-                const hue = Math.random() * 40 + 30; // warm tones
+                const hue = Math.random() * 40 + 30;
                 this.color = `hsla(${hue}, 80%, 70%, 0.5)`;
             }
             update() {
@@ -408,18 +418,13 @@
         function initParticles() {
             particles = [];
             const particleCount = Math.min(200, Math.floor(window.innerWidth * 0.15));
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < particleCount; i++) particles.push(new Particle());
         }
 
         function animateParticles() {
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
 
@@ -431,6 +436,53 @@
         resizeCanvas();
         initParticles();
         animateParticles();
+
+        // Playful card with recurring humorous responses (no emojis)
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const responseDiv = document.getElementById('responseMessage');
+
+        const yesResponses = [
+            "Eso no es verdad… ¡yo te amo más!",
+            "Mentira, la que más ama soy yo.",
+            "Imposible, me ganaste en terquedad, pero en amor no.",
+            "Falso, yo te amo desde antes de conocerte.",
+            "No puede ser, porque a mí me late más fuerte.",
+            "Eso es falso, yo te amo hasta el infinito y más allá."
+        ];
+
+        const noResponses = [
+            "Mentirosa, te conozco… ¡me amas hasta el infinito!",
+            "No te creo, seguro te da pena decirlo.",
+            "Ja, sí que me amas, no lo niegues.",
+            "Te conozco bien, sé que sí me amas.",
+            "Imposible, te amo tanto que no puedes negarlo.",
+            "Mentirosa, yo sé que tu corazón dice sí."
+        ];
+
+        let yesIndex = 0;
+        let noIndex = 0;
+
+        function showResponse(message) {
+            responseDiv.textContent = message;
+            responseDiv.style.opacity = '0';
+            responseDiv.style.display = 'block';
+            setTimeout(() => { responseDiv.style.opacity = '1'; }, 10);
+            // Add a tiny visual bounce to the card
+            const cardInner = document.querySelector('.playful-card-inner');
+            cardInner.style.transform = 'scale(1.01)';
+            setTimeout(() => { cardInner.style.transform = ''; }, 150);
+        }
+
+        yesBtn.addEventListener('click', () => {
+            showResponse(yesResponses[yesIndex % yesResponses.length]);
+            yesIndex++;
+        });
+
+        noBtn.addEventListener('click', () => {
+            showResponse(noResponses[noIndex % noResponses.length]);
+            noIndex++;
+        });
     </script>
 </body>
 </html>

@@ -406,6 +406,74 @@ body {
     margin-left: 0.5rem;
 }
 
+/* ===== PLAYFUL CARD ===== */
+.playful-card {
+    margin: 4rem auto;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+.playful-card-inner {
+    background: rgba(255, 246, 235, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: 2rem;
+    border: 1px solid var(--warm-gold);
+    padding: 1.5rem;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+.playful-card-inner:hover {
+    transform: translateY(-5px);
+}
+.playful-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--deep-burgundy);
+    margin-bottom: 1rem;
+}
+.question {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: var(--deep-burgundy);
+    margin: 1rem 0;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+.love-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 40px;
+    border: 1px solid var(--warm-gold);
+    background: var(--lace-white);
+    color: var(--deep-burgundy);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.love-btn:hover {
+    background: var(--warm-gold);
+    color: white;
+    transform: scale(1.02);
+}
+.response {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--deep-burgundy);
+    min-height: 3rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(255,255,240,0.6);
+    border-radius: 2rem;
+    padding: 0.5rem;
+    display: none;
+}
+
 /* ===== FOOTER ===== */
 .footer-message {
     text-align: center;
@@ -460,6 +528,9 @@ body {
     .swiper-button-prev { display: none; }
     .section-title::before,
     .section-title::after { display: none; }
+    .playful-card h3 { font-size: 1.2rem; }
+    .question { font-size: 1.5rem; }
+    .love-btn { font-size: 1rem; padding: 0.4rem 1rem; }
 }
 @media (min-width: 1200px) {
     .container { max-width: 1400px; }
