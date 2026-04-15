@@ -704,13 +704,13 @@
             }
             mentiraBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (mentiraAttempts < 30) { moveButton(); mentiraAttempts++; modalMessageDiv.textContent = '¡no puedes escapar! intenta otra vez.'; }
+                if (mentiraAttempts < 30) { moveButton(); mentiraAttempts++; modalMessageDiv.textContent = 'intenta otra vez'; }
                 else { modalMessageDiv.textContent = 'bueno, está bien... ¡yo te amo más!'; setTimeout(() => closeModalFunc(), 2000); }
             });
 
             // ========== MENSAJE SECRETO ==========
             const waxStamp = document.getElementById('waxStamp');
-            waxStamp.addEventListener('click', () => { alert('💌 un beso enorme, mi amor. te amo más de lo que imaginas. 💌'); });
+            waxStamp.addEventListener('click', () => { alert('un beso enorme, mi amor. te amo más de lo que imaginas.'); });
 
             // ========== PARALLAX ==========
             window.addEventListener('scroll', () => {
