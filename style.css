@@ -29,7 +29,7 @@ body {
     width: 100%;
 }
 
-/* Background layers – stretch with content */
+/* Background layers */
 .paper-texture,
 .grain-overlay,
 .vignette {
@@ -41,24 +41,21 @@ body {
     pointer-events: none;
     z-index: 0;
 }
-
 .paper-texture {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.03"><path d="M30 20 L170 20 M20 30 L180 30 M40 180 L160 180 M20 170 L180 170" stroke="%236F2A2A" stroke-width="0.5" fill="none"/><circle cx="100" cy="100" r="40" fill="none" stroke="%236F2A2A" stroke-width="0.5"/><path d="M50 150 L150 50" stroke="%236F2A2A" stroke-width="0.5"/></svg>');
     background-repeat: repeat;
     background-size: 200px;
 }
-
 .grain-overlay {
     background-image: repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 1px, transparent 1px, transparent 8px);
     mix-blend-mode: overlay;
 }
-
 .vignette {
     background: var(--vignette);
 }
 
-/* Particle canvas (shimmer) */
-#particleCanvas {
+/* Particle & heart canvases */
+#particleCanvas, #heartCanvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -67,21 +64,11 @@ body {
     pointer-events: none;
     z-index: 1;
 }
+#heartCanvas { z-index: 2; }
 
-/* Heart canvas (floating hearts) */
-#heartCanvas {
+/* Shooting stars container */
+#shootingStarsContainer {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Floating flowers container */
-#flower-stickers-container {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -90,7 +77,40 @@ body {
     z-index: 3;
     overflow: hidden;
 }
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(135deg, #FFF8E7, #FFDAB9);
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px rgba(255,220,150,0.8);
+    animation: shoot linear forwards;
+}
+@keyframes shoot {
+    0% {
+        transform: translate(0, 0) rotate(45deg) scale(1);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(150px, 150px) rotate(45deg) scale(0);
+        opacity: 0;
+    }
+}
 
+/* Floating flowers */
+#flower-stickers-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+}
 .vintage-flower {
     position: absolute;
     width: 80px;
@@ -99,41 +119,52 @@ body {
     animation: float 6s ease-in-out infinite;
     will-change: transform;
 }
-
 @keyframes float {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-12px) rotate(2deg);
-    }
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
 }
-
-.vintage-flower:nth-child(odd) {
-    animation-duration: 5s;
-    animation-delay: -1s;
-}
-.vintage-flower:nth-child(3n) {
-    animation-duration: 7s;
-    animation-delay: -2s;
-}
-.vintage-flower:nth-child(5n+2) {
-    animation-duration: 8s;
-    animation-delay: -3s;
-}
+.vintage-flower:nth-child(odd) { animation-duration: 5s; animation-delay: -1s; }
+.vintage-flower:nth-child(3n) { animation-duration: 7s; animation-delay: -2s; }
+.vintage-flower:nth-child(5n+2) { animation-duration: 8s; animation-delay: -3s; }
 
 .container {
     position: relative;
-    z-index: 4;
+    z-index: 5;
     max-width: 1400px;
     margin: 0 auto;
     padding: 1.5rem 1rem;
 }
 
-/* Scroll indicator – elegant heart & arrow */
+/* Countdown */
+.countdown {
+    text-align: center;
+    margin: 1rem auto;
+    background: rgba(255,246,235,0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 2rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--warm-gold);
+}
+.countdown-label {
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--deep-burgundy);
+}
+.countdown-timer {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--deep-burgundy);
+}
+.countdown-timer span {
+    background: rgba(0,0,0,0.05);
+    padding: 0.1rem 0.4rem;
+    border-radius: 12px;
+    margin: 0 0.2rem;
+}
+
+/* Scroll indicator */
 .scroll-indicator {
     text-align: center;
     margin: 1rem auto 2rem;
@@ -142,7 +173,6 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 0.3rem;
-    transition: opacity 0.3s ease;
     animation: subtlePulse 2s infinite;
 }
 .scroll-icon svg {
@@ -157,34 +187,18 @@ body {
     font-size: 0.9rem;
     color: var(--deep-burgundy);
     opacity: 0.7;
-    letter-spacing: 1px;
 }
 .scroll-indicator:hover .scroll-icon svg {
     transform: translateY(3px);
     filter: drop-shadow(0 0 4px rgba(201, 123, 123, 0.6));
-}
-.scroll-indicator:hover .scroll-text {
-    opacity: 1;
 }
 @keyframes subtlePulse {
     0% { transform: translateY(0); opacity: 0.6; }
     50% { transform: translateY(3px); opacity: 1; }
     100% { transform: translateY(0); opacity: 0.6; }
 }
-@media (max-width: 768px) {
-    .scroll-icon svg {
-        width: 28px;
-        height: 28px;
-    }
-    .scroll-text {
-        font-size: 0.75rem;
-    }
-    .scroll-indicator {
-        margin: 0.5rem auto 1rem;
-    }
-}
 
-/* ===== HEADER (torn paper, photo corners) ===== */
+/* ===== HEADER ===== */
 .hero {
     position: relative;
     margin-bottom: 2rem;
@@ -261,7 +275,7 @@ body {
 }
 .icon-sep { width: 1.5rem; max-width: 28px; height: auto; opacity: 0.6; }
 
-/* ===== CARRUSEL POLAROID ===== */
+/* ===== CARRUSEL POLAROID con glow ===== */
 .carousel-section { margin: 2rem 0; }
 .section-title {
     text-align: center;
@@ -289,10 +303,13 @@ body {
     padding: 0.5rem 0.5rem 0.7rem;
     border-radius: 8px;
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #EADBCE;
 }
-.polaroid-inner:hover { transform: translateY(-5px); }
+.polaroid-inner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 18px rgba(201,123,123,0.6);
+}
 .polaroid-photo {
     width: 100%;
     aspect-ratio: 3 / 4;
@@ -344,9 +361,7 @@ body {
 }
 @media (max-width: 768px) {
     .swiper-button-next,
-    .swiper-button-prev {
-        display: none;
-    }
+    .swiper-button-prev { display: none; }
 }
 
 /* ===== CARTA ===== */
@@ -402,6 +417,7 @@ body {
     height: auto;
     opacity: 0.85;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 .wax-stamp:hover {
     transform: scale(1.05);
@@ -413,7 +429,7 @@ body {
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
 }
 
-/* ===== VINYL PLAYER ===== */
+/* ===== VINYL PLAYER con visualizador ===== */
 .vinyl-player {
     margin: 2rem 0;
     display: flex;
@@ -430,10 +446,10 @@ body {
     text-align: center;
 }
 .vinyl-wrapper {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 0.8rem;
-    position: relative;
 }
 .vinyl-record {
     width: clamp(100px, 35vw, 160px);
@@ -447,6 +463,16 @@ body {
 @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+.audio-visualizer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 50%;
 }
 .controls {
     display: flex;
@@ -482,7 +508,7 @@ body {
     margin-left: 0.3rem;
 }
 
-/* ===== PLAYFUL CARD (initial) ===== */
+/* ===== PLAYFUL CARD ===== */
 .playful-card {
     margin: 2rem auto;
     max-width: 450px;
@@ -550,7 +576,7 @@ body {
     display: none;
 }
 
-/* ===== MODAL (popup for the game) ===== */
+/* ===== MODAL ===== */
 .modal {
     display: none;
     position: fixed;
@@ -631,7 +657,6 @@ body {
     backdrop-filter: blur(4px);
     border-radius: 1.5rem;
     border: 1px solid var(--warm-gold);
-    position: relative;
 }
 .footer-decoration {
     margin-bottom: 0.3rem;
@@ -660,79 +685,28 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .container {
-        padding: 1rem 0.8rem;
-    }
-    .hero {
-        margin-bottom: 1rem;
-        padding: 1rem;
-    }
-    .corner {
-        width: 30px;
-        height: 30px;
-    }
-    .icon-camera {
-        width: 2rem;
-    }
-    .icon-sep, .icon-footer {
-        width: 1.2rem;
-    }
-    .control-btn {
-        width: 1.8rem;
-        height: 1.8rem;
-        font-size: 0.9rem;
-    }
-    .wax-stamp {
-        width: 40px;
-        bottom: 8px;
-        right: 8px;
-    }
-    .vintage-flower {
-        width: 50px;
-        opacity: 0.25;
-    }
-    .section-title {
-        margin-bottom: 1rem;
-    }
-    .letter-paper {
-        padding: 1rem;
-    }
-    .letter-body {
-        font-size: 0.85rem;
-    }
-    .letter-signature {
-        font-size: 1.2rem;
-    }
-    .playful-card h3 {
-        font-size: 1.1rem;
-    }
-    .question {
-        font-size: 1.4rem;
-    }
-    .love-btn {
-        font-size: 0.9rem;
-        padding: 0.3rem 1rem;
-    }
-    .modal h3 {
-        font-size: 1.2rem;
-    }
-    .modal-btn {
-        font-size: 0.9rem;
-        padding: 0.3rem 1rem;
-    }
+    .container { padding: 1rem 0.8rem; }
+    .hero { margin-bottom: 1rem; padding: 1rem; }
+    .corner { width: 30px; height: 30px; }
+    .icon-camera { width: 2rem; }
+    .icon-sep, .icon-footer { width: 1.2rem; }
+    .control-btn { width: 1.8rem; height: 1.8rem; font-size: 0.9rem; }
+    .wax-stamp { width: 40px; bottom: 8px; right: 8px; }
+    .vintage-flower { width: 50px; opacity: 0.25; }
+    .section-title { margin-bottom: 1rem; }
+    .letter-paper { padding: 1rem; }
+    .letter-body { font-size: 0.85rem; }
+    .letter-signature { font-size: 1.2rem; }
+    .playful-card h3 { font-size: 1.1rem; }
+    .question { font-size: 1.4rem; }
+    .love-btn { font-size: 0.9rem; padding: 0.3rem 1rem; }
+    .modal h3 { font-size: 1.2rem; }
+    .modal-btn { font-size: 0.9rem; padding: 0.3rem 1rem; }
+    .countdown-timer { font-size: 1rem; }
 }
-
 @media (min-width: 1200px) {
-    .container {
-        max-width: 1400px;
-    }
-    .polaroid-inner {
-        padding: 0.8rem 0.8rem 1rem;
-    }
-    .polaroid-date {
-        font-size: 1rem;
-    }
-    .polaroid-caption p:last-child {
-        font-size: 0.9rem;
-    }
+    .container { max-width: 1400px; }
+    .polaroid-inner { padding: 0.8rem 0.8rem 1rem; }
+    .polaroid-date { font-size: 1rem; }
+    .polaroid-caption p:last-child { font-size: 0.9rem; }
 }
