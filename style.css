@@ -6,7 +6,7 @@
     --olive-muted: #7A6A48;
     --charcoal: #3A2C2C;
     --lace-white: #FFF6EB;
-    --vignette: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.08) 100%);
+    --vignette: radial-gradient(ellipse at center, transparent 50%, rgba(111,42,42,0.06) 100%);
 }
 
 * {
@@ -17,10 +17,16 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--paper-bg);
+    background: linear-gradient(180deg, #FCF5E8 0%, #F5E6D3 30%, #FFF0E0 60%, #FCF5E8 100%);
     color: var(--charcoal);
     min-height: 100vh;
     overflow-x: hidden;
+    animation: pageIn 1.2s ease-out;
+}
+
+@keyframes pageIn {
+    from { opacity: 0; filter: blur(4px); }
+    to { opacity: 1; filter: blur(0); }
 }
 
 #app {
@@ -92,7 +98,7 @@ body {
     100% { transform: translate(150px, 150px) rotate(45deg) scale(0); opacity: 0; }
 }
 
-/* Floating flowers */
+/* Floating flowers (solo 20) */
 #flower-stickers-container {
     position: absolute;
     top: 0;
@@ -128,7 +134,7 @@ body {
     padding: 1.5rem 1rem;
 }
 
-/* ===== COUNTDOWN (ELEGANTE Y COMPACTO) ===== */
+/* ===== COUNTDOWN (elegante y compacto) ===== */
 .countdown {
     text-align: center;
     margin: 1rem auto;
@@ -214,7 +220,7 @@ body {
     100% { transform: translateY(0); opacity: 0.6; }
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER con parallax y sombra ===== */
 .hero {
     position: relative;
     margin-bottom: 2rem;
@@ -254,7 +260,11 @@ body {
 .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
 .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
 .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
-.hero-content { position: relative; z-index: 2; }
+.hero-content {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.1s linear;
+}
 .vintage-icon { margin-bottom: 0.5rem; }
 .icon-camera { width: 2.5rem; max-width: 40px; height: auto; opacity: 0.7; }
 .hero h1 {
@@ -262,6 +272,8 @@ body {
     font-size: clamp(1.8rem, 6vw, 3rem);
     font-weight: 600;
     color: var(--deep-burgundy);
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 2px rgba(111,42,42,0.1);
 }
 .date-badge {
     display: inline-block;
@@ -291,7 +303,7 @@ body {
 }
 .icon-sep { width: 1.5rem; max-width: 28px; height: auto; opacity: 0.6; }
 
-/* ===== CARRUSEL POLAROID con glow ===== */
+/* ===== CARRUSEL POLAROID con rotación y cinta adhesiva ===== */
 .carousel-section { margin: 2rem 0; }
 .section-title {
     text-align: center;
@@ -321,9 +333,27 @@ body {
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #EADBCE;
+    position: relative;
 }
+/* Cinta adhesiva */
+.polaroid-inner::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 60px;
+    height: 18px;
+    background: rgba(201,168,124,0.35);
+    border-radius: 2px;
+    z-index: 10;
+    pointer-events: none;
+}
+/* Rotación aleatoria */
+.swiper-slide:nth-child(odd) .polaroid-inner { transform: rotate(-1.5deg); }
+.swiper-slide:nth-child(even) .polaroid-inner { transform: rotate(1.2deg); }
 .polaroid-inner:hover {
-    transform: translateY(-5px);
+    transform: rotate(0deg) translateY(-5px) !important;
     box-shadow: 0 0 18px rgba(201,123,123,0.6);
 }
 .polaroid-photo {
@@ -350,7 +380,8 @@ body {
     margin-bottom: 0.2rem;
 }
 .polaroid-caption p:last-child {
-    font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+    font-family: 'Caveat', cursive;
+    font-size: clamp(0.8rem, 3vw, 1rem);
     color: var(--charcoal);
     line-height: 1.3;
 }
@@ -380,7 +411,7 @@ body {
     .swiper-button-prev { display: none; }
 }
 
-/* ===== CARTA ===== */
+/* ===== CARTA con líneas de cuaderno y letra capital ===== */
 .letter-section {
     margin: 2rem 0;
     display: flex;
@@ -394,7 +425,6 @@ body {
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     position: relative;
     border: 1px solid #EADBCE;
-    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 2px, transparent 2px, transparent 8px);
 }
 .letter-header {
     text-align: right;
@@ -411,12 +441,22 @@ body {
 .letter-body {
     font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #3E2A2A;
+    background: repeating-linear-gradient(transparent, transparent 27px, rgba(111,42,42,0.06) 27px, rgba(111,42,42,0.06) 28px);
+    padding: 0 0.5rem;
 }
 .letter-body p {
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     text-align: justify;
+}
+.letter-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    float: left;
+    line-height: 1;
+    margin-right: 0.3rem;
+    color: var(--deep-burgundy);
 }
 .letter-signature {
     margin-top: 1rem;
@@ -445,7 +485,7 @@ body {
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
 }
 
-/* ===== VINYL PLAYER con visualizador (corregido) ===== */
+/* ===== VINYL PLAYER con resplandor al girar ===== */
 .vinyl-player {
     margin: 2rem 0;
     display: flex;
@@ -471,11 +511,12 @@ body {
 .vinyl-record {
     width: clamp(100px, 35vw, 160px);
     height: auto;
-    transition: transform 0.2s linear;
+    transition: transform 0.2s linear, filter 0.3s ease;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 .vinyl-record.spinning {
     animation: spin 2s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(201,123,123,0.4));
 }
 @keyframes spin {
     from { transform: rotate(0deg); }
@@ -725,5 +766,5 @@ body {
     .container { max-width: 1400px; }
     .polaroid-inner { padding: 0.8rem 0.8rem 1rem; }
     .polaroid-date { font-size: 1rem; }
-    .polaroid-caption p:last-child { font-size: 0.9rem; }
+    .polaroid-caption p:last-child { font-size: 1rem; }
 }
