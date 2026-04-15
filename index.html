@@ -43,7 +43,7 @@
         <!-- Heart canvas (floating hearts) -->
         <canvas id="heartCanvas"></canvas>
 
-        <!-- Floating flowers container (solo 8 flores) -->
+        <!-- Floating flowers container (8 flores) -->
         <div id="flower-stickers-container"></div>
 
         <div class="container">
@@ -95,7 +95,7 @@
                 <div class="scroll-text">desliza</div>
             </div>
 
-            <!-- Carrusel Polaroid (13 slides completas) -->
+            <!-- Carrusel Polaroid (13 slides) -->
             <section class="carousel-section" data-aos="fade-up">
                 <h2 class="section-title">Nuestro año juntas</h2>
                 <div class="swiper mySwiper">
@@ -275,30 +275,36 @@
                 <audio id="audioPlayer" preload="auto"></audio>
             </div>
 
-            <!-- Razones por las que te amo -->
+            <!-- Razones por las que te amo (nuevas, sin mayúsculas) -->
             <section class="reasons-section" data-aos="fade-up">
-                <h2 class="section-title">Razones por las que te amo</h2>
+                <h2 class="section-title">razones por las que te amo</h2>
                 <div class="reasons-grid">
-                    <div class="reason-card">Tu sonrisa ilumina mis días</div>
-                    <div class="reason-card">Me escuchas siempre con paciencia</div>
-                    <div class="reason-card">Haces que todo sea más divertido</div>
-                    <div class="reason-card">Tu forma de ver el mundo es única</div>
-                    <div class="reason-card">Me aceptas tal como soy</div>
-                    <div class="reason-card">Nunca dejas de sorprenderme</div>
-                    <div class="reason-card">Tu risa es mi canción favorita</div>
-                    <div class="reason-card">Me enseñas a ser mejor persona</div>
-                    <div class="reason-card">Cada día a tu lado es un regalo</div>
+                    <div class="reason-card">me haces reír todos los días</div>
+                    <div class="reason-card">eres la persona mas paciente conmigo</div>
+                    <div class="reason-card">como te pones roja cuando te digo cosas bonitas</div>
+                    <div class="reason-card">tu voz y como cantas jeje</div>
+                    <div class="reason-card">lo mucho que yappeas</div>
+                    <div class="reason-card">te encantan los animales como a mi</div>
+                    <div class="reason-card">eres tan buena con los niños, no puedo esperar a tener uno contigo</div>
+                    <div class="reason-card">tu forma de ver el mundo</div>
+                    <div class="reason-card">lo bien que encajamos</div>
+                    <div class="reason-card">lo mucho que te admiro por lo que has vivido</div>
+                    <div class="reason-card">lo inteligente que eres</div>
+                    <div class="reason-card">tus ojos enormes</div>
+                    <div class="reason-card">tus soniditos</div>
+                    <div class="reason-card">toda tu personalidad</div>
+                    <div class="reason-card">toda tu</div>
                 </div>
             </section>
 
             <!-- Juego -->
             <div class="playful-card" data-aos="fade-up">
                 <div class="playful-card-inner">
-                    <h3>Un juegue</h3>
-                    <p class="question">¿Me amas?</p>
+                    <h3>un juegue</h3>
+                    <p class="question">¿me amas?</p>
                     <div class="buttons">
-                        <button class="love-btn" id="yesBtn">Sí</button>
-                        <button class="love-btn" id="noBtn">No</button>
+                        <button class="love-btn" id="yesBtn">sí</button>
+                        <button class="love-btn" id="noBtn">no</button>
                     </div>
                     <div class="response" id="responseMessage"></div>
                 </div>
@@ -308,10 +314,10 @@
             <div id="loveModal" class="modal">
                 <div class="modal-content">
                     <span class="close-modal">&times;</span>
-                    <h3>Yo te amo más</h3>
+                    <h3>yo te amo más</h3>
                     <div class="modal-buttons">
-                        <button id="ciertoBtn" class="modal-btn">Cierto</button>
-                        <button id="mentiraBtn" class="modal-btn">Mentira</button>
+                        <button id="ciertoBtn" class="modal-btn">cierto</button>
+                        <button id="mentiraBtn" class="modal-btn">mentira</button>
                     </div>
                     <div id="modalMessage" class="modal-message"></div>
                 </div>
@@ -320,8 +326,8 @@
             <!-- Footer -->
             <footer class="footer-message">
                 <div class="footer-decoration"></div>
-                <p>Un pequeño detallito para que sepas lo mucho que te amo.</p>
-                <p class="signature">Gracias por un año tan bonito.</p>
+                <p>un pequeño detallito para que sepas lo mucho que te amo.</p>
+                <p class="signature">gracias por un año tan bonito.</p>
             </footer>
         </div>
     </div>
@@ -355,7 +361,7 @@
                 }
             });
 
-            // ========== AUDIO PLAYER REPARADO ==========
+            // ========== AUDIO PLAYER REPARADO (next/prev funcionan) ==========
             const audio = document.getElementById('audioPlayer');
             const playPauseBtn = document.getElementById('playPauseBtn');
             const prevBtn = document.getElementById('prevBtn');
@@ -450,7 +456,7 @@
                 }
             }
 
-            function loadSong(index) {
+            function loadSong(index, autoPlay = false) {
                 const wasPlaying = isPlaying;
                 if (wasPlaying) {
                     audio.pause();
@@ -461,7 +467,7 @@
                 audio.src = songs[index].src;
                 audio.load();
                 currentSongSpan.textContent = songs[index].title;
-                if (wasPlaying) {
+                if (autoPlay || wasPlaying) {
                     audio.play().then(async () => {
                         isPlaying = true;
                         vinylRecord.classList.add('spinning');
@@ -498,12 +504,12 @@
 
             function nextSong() {
                 currentSongIndex = (currentSongIndex + 1) % songs.length;
-                loadSong(currentSongIndex);
+                loadSong(currentSongIndex, true); // autoPlay true
             }
 
             function prevSong() {
                 currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-                loadSong(currentSongIndex);
+                loadSong(currentSongIndex, true);
             }
 
             playPauseBtn.addEventListener('click', playPauseAudio);
@@ -512,12 +518,13 @@
             audio.addEventListener('ended', nextSong);
             window.addEventListener('resize', () => resizeVisualizer());
 
+            // Cargar primera canción sin autoplay (para que no moleste)
             audio.src = songs[0].src;
             audio.load();
             currentSongSpan.textContent = songs[0].title;
             resizeVisualizer();
 
-            // ========== PARTICULAS (reducidas) ==========
+            // ========== PARTICULAS ==========
             const canvas = document.getElementById('particleCanvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -550,7 +557,7 @@
             window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
             resizeCanvas(); initParticles(); animateParticles();
 
-            // ========== CORAZONES (iniciales 8) ==========
+            // ========== CORAZONES ==========
             const heartCanvas = document.getElementById('heartCanvas');
             const heartCtx = heartCanvas.getContext('2d');
             let hearts = [];
@@ -594,7 +601,7 @@
             window.addEventListener('resize', () => { resizeHeartCanvas(); initHearts(); });
             resizeHeartCanvas(); initHearts(); animateHearts();
 
-            // ========== ESTRELLAS FUGACES (cada 15s) ==========
+            // ========== ESTRELLAS FUGACES ==========
             const starsContainer = document.getElementById('shootingStarsContainer');
             function createShootingStar() {
                 const star = document.createElement('div');
@@ -640,8 +647,8 @@
             const allBtns = document.querySelectorAll('button');
             allBtns.forEach(btn => btn.addEventListener('click', (e) => { e.stopPropagation(); if (audioContext) playClickSound(); }));
 
-            // ========== JUEGO ==========
-            const noResponses = ["Apoco no amor.","Mentirosaaa.","Whatever, como sea, no importa, equis.","Amor que, que dijistes.","Perdón por ser una TONTA","Pues yo si te amo a ti y así","Oh..."];
+            // ========== JUEGO (modal centrado) ==========
+            const noResponses = ["apoco no amor.", "mentirosaaa.", "whatever, como sea, no importa, equis.", "amor que, que dijistes.", "perdón por ser una tonta", "pues yo sí te amo a ti y así", "oh..."];
             let noIndex = 0;
             const noBtn = document.getElementById('noBtn');
             const responseDiv = document.getElementById('responseMessage');
@@ -663,13 +670,21 @@
             const mentiraBtn = document.getElementById('mentiraBtn');
             const modalMessageDiv = document.getElementById('modalMessage');
             let mentiraAttempts = 0;
-            function showModal() { modal.style.display = 'flex'; mentiraBtn.style.position = 'relative'; mentiraBtn.style.top = 'auto'; mentiraBtn.style.left = 'auto'; mentiraAttempts = 0; modalMessageDiv.textContent = ''; mentiraBtn.style.display = 'inline-block'; }
+            function showModal() {
+                modal.style.display = 'flex';
+                mentiraBtn.style.position = 'relative';
+                mentiraBtn.style.top = 'auto';
+                mentiraBtn.style.left = 'auto';
+                mentiraAttempts = 0;
+                modalMessageDiv.textContent = '';
+                mentiraBtn.style.display = 'inline-block';
+            }
             function closeModalFunc() { modal.style.display = 'none'; }
             yesBtn.addEventListener('click', showModal);
             closeModal.addEventListener('click', closeModalFunc);
             window.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
             ciertoBtn.addEventListener('click', () => {
-                modalMessageDiv.textContent = 'Lo sabía. Eres la persona más increíble.';
+                modalMessageDiv.textContent = 'lo sabía. eres la persona más increíble.';
                 canvasConfetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#CD5C5C', '#F08080', '#FA8072'] });
                 setTimeout(() => closeModalFunc(), 2000);
             });
@@ -687,13 +702,13 @@
             }
             mentiraBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (mentiraAttempts < 30) { moveButton(); mentiraAttempts++; modalMessageDiv.textContent = '¡No puedes escapar! Intenta otra vez.'; }
-                else { modalMessageDiv.textContent = 'Bueno, está bien... ¡yo te amo más!'; setTimeout(() => closeModalFunc(), 2000); }
+                if (mentiraAttempts < 30) { moveButton(); mentiraAttempts++; modalMessageDiv.textContent = '¡no puedes escapar! intenta otra vez.'; }
+                else { modalMessageDiv.textContent = 'bueno, está bien... ¡yo te amo más!'; setTimeout(() => closeModalFunc(), 2000); }
             });
 
-            // ========== MENSAJE SECRETO EN EL SELLO ==========
+            // ========== MENSAJE SECRETO ==========
             const waxStamp = document.getElementById('waxStamp');
-            waxStamp.addEventListener('click', () => { alert('💌 Un beso enorme, mi amor. Te amo más de lo que imaginas. 💌'); });
+            waxStamp.addEventListener('click', () => { alert('💌 un beso enorme, mi amor. te amo más de lo que imaginas. 💌'); });
 
             // ========== PARALLAX ==========
             window.addEventListener('scroll', () => {
