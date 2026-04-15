@@ -768,3 +768,41 @@ body {
     .polaroid-date { font-size: 1rem; }
     .polaroid-caption p:last-child { font-size: 1rem; }
 }
+/* ===== NUEVO APARTADO: RAZONES POR LAS QUE TE AMO ===== */
+.reasons-section {
+    margin: 3rem 0;
+}
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+.reason-card {
+    background: rgba(255, 246, 235, 0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--warm-gold);
+    border-radius: 2rem;
+    padding: 1rem;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--deep-burgundy);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.reason-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(201,123,123,0.2);
+    background: rgba(255, 246, 235, 0.9);
+}
+@media (max-width: 768px) {
+    .reasons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.8rem;
+    }
+    .reason-card {
+        font-size: 1rem;
+        padding: 0.7rem;
+    }
+}
