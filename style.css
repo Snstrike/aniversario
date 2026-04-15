@@ -36,7 +36,6 @@ body {
     width: 100%;
 }
 
-/* Background layers */
 .paper-texture,
 .grain-overlay,
 .vignette {
@@ -61,7 +60,6 @@ body {
     background: var(--vignette);
 }
 
-/* Particle & heart canvases */
 #particleCanvas, #heartCanvas {
     position: fixed;
     top: 0;
@@ -73,7 +71,6 @@ body {
 }
 #heartCanvas { z-index: 2; }
 
-/* Shooting stars */
 #shootingStarsContainer {
     position: fixed;
     top: 0;
@@ -99,7 +96,6 @@ body {
     100% { transform: translate(150px, 150px) rotate(45deg) scale(0); opacity: 0; }
 }
 
-/* Floating flowers (solo 8) */
 #flower-stickers-container {
     position: absolute;
     top: 0;
@@ -136,7 +132,6 @@ body {
     filter: drop-shadow(0 0 60px rgba(111,42,42,0.03));
 }
 
-/* Countdown */
 .countdown {
     text-align: center;
     margin: 1rem auto;
@@ -189,7 +184,6 @@ body {
     .unit-label { font-size: 0.55rem; }
 }
 
-/* Scroll indicator */
 .scroll-indicator {
     text-align: center;
     margin: 1rem auto 2rem;
@@ -223,7 +217,6 @@ body {
     100% { transform: translateY(0); opacity: 0.6; }
 }
 
-/* Header */
 .hero {
     position: relative;
     margin-bottom: 2rem;
@@ -301,7 +294,6 @@ body {
 }
 .vintage-separator { margin-top: 0.75rem; }
 
-/* Carrusel polaroid */
 .carousel-section { margin: 2rem 0; }
 .section-title {
     text-align: center;
@@ -405,7 +397,6 @@ body {
 .swiper-button-next:after, .swiper-button-prev:after { font-size: 1rem; }
 @media (max-width: 768px) { .swiper-button-next, .swiper-button-prev { display: none; } }
 
-/* Carta */
 .letter-section {
     margin: 2rem 0;
     display: flex;
@@ -475,7 +466,6 @@ body {
 }
 .wax-stamp img { width: 100%; height: auto; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2)); }
 
-/* Vinyl player */
 .vinyl-player {
     margin: 2rem 0;
     display: flex;
@@ -555,7 +545,6 @@ body {
     margin-left: 0.3rem;
 }
 
-/* Razones */
 .reasons-section { margin: 3rem 0; }
 .reasons-grid {
     display: grid;
@@ -586,7 +575,6 @@ body {
     .reason-card { font-size: 1rem; padding: 1rem; }
 }
 
-/* Juego */
 .playful-card {
     margin: 2rem auto;
     max-width: 450px;
@@ -651,7 +639,6 @@ body {
     display: none;
 }
 
-/* Modal (centrado) */
 .modal {
     display: none;
     position: fixed;
@@ -723,7 +710,6 @@ body {
     font-style: italic;
 }
 
-/* Footer */
 .footer-message {
     text-align: center;
     margin-top: 2rem;
@@ -748,7 +734,6 @@ body {
     color: var(--deep-burgundy);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .container { padding: 1rem 0.8rem; }
     .hero { margin-bottom: 1rem; padding: 1.5rem; }
