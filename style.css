@@ -22,6 +22,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     animation: pageIn 1.2s ease-out;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes pageIn {
@@ -98,7 +99,7 @@ body {
     100% { transform: translate(150px, 150px) rotate(45deg) scale(0); opacity: 0; }
 }
 
-/* Floating flowers (solo 20) */
+/* Floating flowers (solo 8, muy sutiles) */
 #flower-stickers-container {
     position: absolute;
     top: 0;
@@ -114,7 +115,7 @@ body {
     width: 80px;
     height: auto;
     filter: sepia(0.3) brightness(0.9) contrast(1.1);
-    animation: float 6s ease-in-out infinite;
+    animation: float 12s ease-in-out infinite;
     will-change: transform;
 }
 @keyframes float {
@@ -122,9 +123,9 @@ body {
     50% { transform: translateY(-12px) rotate(2deg); }
     100% { transform: translateY(0px) rotate(0deg); }
 }
-.vintage-flower:nth-child(odd) { animation-duration: 5s; animation-delay: -1s; }
-.vintage-flower:nth-child(3n) { animation-duration: 7s; animation-delay: -2s; }
-.vintage-flower:nth-child(5n+2) { animation-duration: 8s; animation-delay: -3s; }
+.vintage-flower:nth-child(odd) { animation-duration: 10s; animation-delay: -2s; }
+.vintage-flower:nth-child(3n) { animation-duration: 14s; animation-delay: -4s; }
+.vintage-flower:nth-child(5n+2) { animation-duration: 16s; animation-delay: -6s; }
 
 .container {
     position: relative;
@@ -132,19 +133,21 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 1.5rem 1rem;
+    filter: drop-shadow(0 0 60px rgba(111,42,42,0.03));
 }
 
-/* ===== COUNTDOWN (elegante y compacto) ===== */
+/* ===== COUNTDOWN (glassmorphism iOS) ===== */
 .countdown {
     text-align: center;
     margin: 1rem auto;
-    background: rgba(255,246,235,0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(255,246,235,0.4);
+    backdrop-filter: blur(20px);
     border-radius: 2rem;
     padding: 0.6rem 1rem;
-    border: 1px solid var(--warm-gold);
+    border: 1px solid rgba(201,168,124,0.3);
     max-width: 90%;
     width: fit-content;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 4px 12px rgba(0,0,0,0.05);
 }
 .countdown-label {
     font-family: 'Caveat', cursive;
@@ -202,7 +205,7 @@ body {
     height: 36px;
     stroke: var(--deep-burgundy);
     stroke-width: 1.2;
-    transition: transform 0.2s ease, filter 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
 }
 .scroll-text {
     font-family: 'Caveat', cursive;
@@ -220,17 +223,18 @@ body {
     100% { transform: translateY(0); opacity: 0.6; }
 }
 
-/* ===== HEADER con parallax y sombra ===== */
+/* ===== HEADER (padding duplicado, glassmorphism) ===== */
 .hero {
     position: relative;
     margin-bottom: 2rem;
     background: rgba(255, 246, 235, 0.65);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(20px);
     border-radius: 2rem;
-    border: 1px solid var(--warm-gold);
-    padding: 1.5rem;
+    border: 1px solid rgba(201,168,124,0.3);
+    padding: 2.5rem;
     text-align: center;
     overflow: hidden;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 8px 20px rgba(0,0,0,0.05);
 }
 .torn-edge {
     position: absolute;
@@ -282,7 +286,7 @@ body {
     border-radius: 40px;
     font-size: clamp(0.75rem, 3vw, 1rem);
     margin: 0.5rem 0;
-    border: 1px solid var(--warm-gold);
+    border: 1px solid rgba(201,168,124,0.5);
 }
 .date-badge strong {
     font-family: 'Playfair Display', serif;
@@ -297,13 +301,9 @@ body {
 }
 .vintage-separator {
     margin-top: 0.75rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
 }
-.icon-sep { width: 1.5rem; max-width: 28px; height: auto; opacity: 0.6; }
 
-/* ===== CARRUSEL POLAROID con rotación y cinta adhesiva ===== */
+/* ===== CARRUSEL POLAROID con filtro vintage + cinta realista ===== */
 .carousel-section { margin: 2rem 0; }
 .section-title {
     text-align: center;
@@ -331,11 +331,11 @@ body {
     padding: 0.5rem 0.5rem 0.7rem;
     border-radius: 8px;
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
     border: 1px solid #EADBCE;
     position: relative;
 }
-/* Cinta adhesiva */
+/* Cinta adhesiva realista */
 .polaroid-inner::before {
     content: '';
     position: absolute;
@@ -344,8 +344,9 @@ body {
     transform: translateX(-50%) rotate(-2deg);
     width: 60px;
     height: 18px;
-    background: rgba(201,168,124,0.35);
+    background: linear-gradient(135deg, rgba(201,168,124,0.25), rgba(201,168,124,0.45));
     border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     z-index: 10;
     pointer-events: none;
 }
@@ -366,7 +367,11 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(0.15) saturate(0.85) contrast(1.05) brightness(0.97);
+    filter: grayscale(0.1) sepia(0.2);
+    transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.polaroid-inner:hover .polaroid-photo img {
+    filter: grayscale(0) sepia(0);
 }
 .polaroid-caption {
     padding: 0.4rem 0.2rem 0.2rem;
@@ -411,7 +416,7 @@ body {
     .swiper-button-prev { display: none; }
 }
 
-/* ===== CARTA con líneas de cuaderno y letra capital ===== */
+/* ===== CARTA (line-height aumentado, padding duplicado) ===== */
 .letter-section {
     margin: 2rem 0;
     display: flex;
@@ -420,7 +425,7 @@ body {
 .letter-paper {
     max-width: 700px;
     background: var(--lace-white);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 4px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     position: relative;
@@ -441,7 +446,7 @@ body {
 .letter-body {
     font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
-    line-height: 1.6;
+    line-height: 1.9;
     color: #3E2A2A;
     background: repeating-linear-gradient(transparent, transparent 27px, rgba(111,42,42,0.06) 27px, rgba(111,42,42,0.06) 28px);
     padding: 0 0.5rem;
@@ -485,18 +490,18 @@ body {
     filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
 }
 
-/* ===== VINYL PLAYER con resplandor al girar ===== */
+/* ===== VINYL PLAYER más elegante ===== */
 .vinyl-player {
     margin: 2rem 0;
     display: flex;
     justify-content: center;
 }
 .record-player {
-    background: #2C2C2C;
+    background: linear-gradient(145deg, #2C2020, #1A1515);
     padding: 1rem;
     border-radius: 16px;
     box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-    border: 1px solid var(--warm-gold);
+    border: 1px solid rgba(201,168,124,0.3);
     width: 100%;
     max-width: 360px;
     text-align: center;
@@ -541,7 +546,8 @@ body {
     margin-top: 0.8rem;
 }
 .control-btn {
-    background: #3A2C2C;
+    background: rgba(255,246,235,0.1);
+    backdrop-filter: blur(10px);
     border: none;
     color: var(--warm-gold);
     font-size: 1rem;
@@ -549,13 +555,13 @@ body {
     height: 2rem;
     border-radius: 30px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
     justify-content: center;
 }
 .control-btn:hover {
-    background: #5A3E3E;
+    background: rgba(255,246,235,0.2);
     transform: scale(1.05);
 }
 .song-info {
@@ -567,7 +573,46 @@ body {
     margin-left: 0.3rem;
 }
 
-/* ===== PLAYFUL CARD ===== */
+/* ===== RAZONES (glassmorphism, padding duplicado) ===== */
+.reasons-section {
+    margin: 3rem 0;
+}
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+.reason-card {
+    background: rgba(255, 246, 235, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201,168,124,0.3);
+    border-radius: 2rem;
+    padding: 1.5rem;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 1.2rem;
+    color: var(--deep-burgundy);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 4px 12px rgba(0,0,0,0.05);
+}
+.reason-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(201,123,123,0.2);
+    background: rgba(255, 246, 235, 0.7);
+}
+@media (max-width: 768px) {
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    .reason-card {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* ===== PLAYFUL CARD (glassmorphism) ===== */
 .playful-card {
     margin: 2rem auto;
     max-width: 450px;
@@ -575,13 +620,13 @@ body {
     text-align: center;
 }
 .playful-card-inner {
-    background: rgba(255, 246, 235, 0.85);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 246, 235, 0.4);
+    backdrop-filter: blur(20px);
     border-radius: 1.5rem;
-    border: 1px solid var(--warm-gold);
+    border: 1px solid rgba(201,168,124,0.3);
     padding: 1rem;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset, 0 12px 24px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .playful-card-inner:hover {
     transform: translateY(-5px);
@@ -613,7 +658,7 @@ body {
     background: var(--lace-white);
     color: var(--deep-burgundy);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .love-btn:hover {
@@ -707,7 +752,7 @@ body {
     font-style: italic;
 }
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER (padding con safe-area, texto ultraligero) ===== */
 .footer-message {
     text-align: center;
     margin-top: 2rem;
@@ -716,18 +761,10 @@ body {
     backdrop-filter: blur(4px);
     border-radius: 1.5rem;
     border: 1px solid var(--warm-gold);
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 .footer-decoration {
     margin-bottom: 0.3rem;
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-}
-.icon-footer {
-    width: 1.3rem;
-    max-width: 24px;
-    height: auto;
-    opacity: 0.6;
 }
 .footer-message p {
     font-size: clamp(0.7rem, 3vw, 0.85rem);
@@ -745,13 +782,12 @@ body {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .container { padding: 1rem 0.8rem; }
-    .hero { margin-bottom: 1rem; padding: 1rem; }
+    .hero { margin-bottom: 1rem; padding: 1.5rem; }
     .corner { width: 30px; height: 30px; }
     .icon-camera { width: 2rem; }
-    .icon-sep, .icon-footer { width: 1.2rem; }
     .control-btn { width: 1.8rem; height: 1.8rem; font-size: 0.9rem; }
     .wax-stamp { width: 40px; bottom: 8px; right: 8px; }
-    .vintage-flower { width: 50px; opacity: 0.25; }
+    .vintage-flower { width: 50px; opacity: 0.1; }
     .section-title { margin-bottom: 1rem; }
     .letter-paper { padding: 1rem; }
     .letter-body { font-size: 0.85rem; }
@@ -767,42 +803,4 @@ body {
     .polaroid-inner { padding: 0.8rem 0.8rem 1rem; }
     .polaroid-date { font-size: 1rem; }
     .polaroid-caption p:last-child { font-size: 1rem; }
-}
-/* ===== NUEVO APARTADO: RAZONES POR LAS QUE TE AMO ===== */
-.reasons-section {
-    margin: 3rem 0;
-}
-.reasons-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-.reason-card {
-    background: rgba(255, 246, 235, 0.75);
-    backdrop-filter: blur(4px);
-    border: 1px solid var(--warm-gold);
-    border-radius: 2rem;
-    padding: 1rem;
-    text-align: center;
-    font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
-    color: var(--deep-burgundy);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.reason-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(201,123,123,0.2);
-    background: rgba(255, 246, 235, 0.9);
-}
-@media (max-width: 768px) {
-    .reasons-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 0.8rem;
-    }
-    .reason-card {
-        font-size: 1rem;
-        padding: 0.7rem;
-    }
 }
